@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { DateTime } = require('luxon');
 
 const Schema = mongoose.Schema;
 
@@ -14,6 +15,16 @@ const FanSchema = new Schema({
   LED: { type: String, required: true },
   dimensions: { type: String, required: true },
   dateFirstAvailable: { type: Date, required: true },
+});
+
+FanSchema.virtual('url').get(function () {
+  return `/catalog/fan/${this._id}`;
+});
+
+FanSchema.virtual('dateFirstAvailable_formatted').get(function () {
+  return DateTime.fromJSDate(this.dateFirstAvailable).toLocaleString(
+    DateTime.DATE_MED
+  );
 });
 
 module.exports = mongoose.model('Fan', FanSchema);
