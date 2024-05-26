@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+#!/usr/bin/env node
 
 // Get arguments passed on command line
 const userArgs = process.argv.slice(2);
@@ -41,7 +41,7 @@ async function main() {
   mongoose.connection.close();
 }
 
-async function createCases(
+async function createCase(
   index,
   brand,
   type,
@@ -57,15 +57,16 @@ async function createCases(
     color: color,
     dateFirstAvailable: dateFirstAvailable,
   };
-  // case is reserved in javascript so using 'ccase'
-  const ccase = new Book(casedetail);
+  // case is reserved in JavaScript so using 'ccase'
+  const ccase = new Case(casedetail);
   await ccase.save();
   cases[index] = ccase;
 }
+
 async function createCases() {
   console.log('Adding cases');
   await Promise.all([
-    createCases(
+    createCase(
       0,
       'Corsair',
       'ATX Mid Tower',
@@ -73,7 +74,7 @@ async function createCases() {
       'Black',
       '2020-05-14'
     ),
-    createCases(
+    createCase(
       1,
       'Fractal Design',
       'ATX Mid Tower',
@@ -81,7 +82,7 @@ async function createCases() {
       'Charcoal black',
       '2022-12-07'
     ),
-    createCases(
+    createCase(
       2,
       'NZXT',
       'ATX Mid Tower',
@@ -89,6 +90,168 @@ async function createCases() {
       'Black',
       '2020-05-14'
     ),
-    createCases(3, 'SAMA', 'ATX Full Tower', 'None', 'White', '2024-01-16'),
+    createCase(3, 'SAMA', 'ATX Full Tower', 'None', 'White', '2024-01-16'),
+  ]);
+}
+
+async function createCPU(
+  index,
+  brand,
+  type,
+  series,
+  name,
+  model,
+  socket,
+  dateFirstAvailable
+) {
+  const cpuDetail = {
+    index: index,
+    brand: brand,
+    type: type,
+    series: series,
+    name: name,
+    model: model,
+    socket: socket,
+    dateFirstAvailable: dateFirstAvailable,
+  };
+  const cpu = new CPU(cpuDetail);
+  await cpu.save();
+  CPUs[index] = cpu;
+}
+
+async function createCPUs() {
+  console.log('Adding cpus');
+  await Promise.all([
+    createCPU(
+      0,
+      'AMD',
+      'Desktop',
+      'Ryzen 9 7950X3d',
+      '100-100000908WOF',
+      'Socket AM5',
+      '2023-02-28'
+    ),
+    createCPU(
+      1,
+      'Intel',
+      'Desktop',
+      'Core i9-14900K',
+      'Core i9-14900K',
+      'BX8071514900K',
+      'LGA 1700',
+      '2023-10-16'
+    ),
+    createCPU(
+      2,
+      'AMD',
+      'Desktop',
+      'Ryzen 9 7000 Series',
+      'Ryzen 9 7950X',
+      '100-100000514WOF',
+      'Socket AM5',
+      '2022-09-27'
+    ),
+    createCPU(
+      3,
+      'Intel',
+      'Desktop',
+      'Core i9 14th Gen',
+      'Core i9-14900KF',
+      'BX8071514900KF',
+      'LGA 1700',
+      '2023-09-16'
+    ),
+  ]);
+}
+
+async function createFan(
+  index,
+  brand,
+  type,
+  model,
+  series,
+  fanCounts,
+  rpm,
+  airFlow,
+  noiseLevel,
+  LED,
+  dimensions,
+  dateFirstAvailable
+) {
+  const fanDetail = {
+    index: index,
+    brand: brand,
+    type: type,
+    model: model,
+    series: series,
+    fanCounts: fanCounts,
+    rpm: rpm,
+    airFlow: airFlow,
+    noiseLevel: noiseLevel,
+    LED: LED,
+    dimensions: dimensions,
+    dateFirstAvailable: dateFirstAvailable,
+  };
+  const fan = new Fan(fanDetail);
+  await fan.save();
+  fans[index] = fan;
+}
+
+async function createFans() {
+  console.log('Adding fans');
+  await Promise.all([
+    createFan(
+      0,
+      'Lian Li',
+      'Case Fan',
+      'n/a',
+      'n/a',
+      '3 Fans',
+      'n/a',
+      'n/a',
+      'n/a',
+      'RGB',
+      'n/a',
+      '2022-08-04'
+    ),
+    createFan(
+      1,
+      'Noctua',
+      'Fan & Heatsinks',
+      'NH-D15 chromax.black',
+      'n/a',
+      '1',
+      '1500 RPM±10%',
+      '82.52CFM',
+      '24.6dB(A)',
+      '165 mm',
+      '2019-11-07'
+    ),
+    createFan(
+      2,
+      'Corsair',
+      'Case Fan',
+      'iCUE SP120 RGB ELITE Triple Fan Kit',
+      '3 Fans',
+      '550 - 1500 +/- 10% RPM',
+      '16.91 - 47.73 CFM',
+      '18 - 26.5 dBA',
+      'RGB',
+      '120.00 x 120.00 x 25.00 mm',
+      '2021-04-07'
+    ),
+    createFan(
+      3,
+      'Deepcool',
+      'Fan & Heatsinks',
+      'n/a',
+      '1',
+      '500~1850 RPM+/-10%',
+      '68.99CFM',
+      '<=28 db(A)',
+      'Non-LED',
+      '120.00 x 120.00 x 25.00mm',
+      '2022-05-03'
+    ),
   ]);
 }
