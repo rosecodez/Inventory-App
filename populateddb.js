@@ -255,3 +255,61 @@ async function createFans() {
     ),
   ]);
 }
+async function createGPU(
+  index,
+  model,
+  gpuInterface,
+  series,
+  gpu,
+  dateFirstAvailable
+) {
+  const gpuDetail = {
+    index: index,
+    model: model,
+    gpuinterface: gpuInterface,
+    series: series,
+    GPU: gpu,
+    dateFirstAvailable: dateFirstAvailable,
+  };
+  const gpuObj = new GPU(gpuDetail);
+  await gpuObj.save();
+  gpus[index] = gpuObj;
+}
+
+async function createGPUs() {
+  console.log('Adding gpus');
+  await Promise.all([
+    createGPU(
+      0,
+      'RX6600 CLD 8G',
+      'PCI Express 4.0',
+      'AMD Radeon RX 6000 Series',
+      'Radeon RX 6600',
+      '2021-09-13'
+    ),
+    createGPU(
+      1,
+      'GV-N4070WF3OC-12GD',
+      'PCI Express 4.0 x16',
+      'WINDFORCE',
+      'GeForce RTX 4070',
+      '2023-04-12'
+    ),
+    createGPU(
+      2,
+      'DUAL-RTX3060-O12G-V2',
+      'PCI Express 4.0',
+      'Dual',
+      'GeForce RTX 3060',
+      '2021-07-09'
+    ),
+    createGPU(
+      3,
+      'TUF-RTX4070TI-12G-GAMING',
+      'PCI Express 4.0',
+      'NVIDIA GeForce RTX 40 Series',
+      'GeForce RTX 4070 Ti',
+      '2023-01-05'
+    ),
+  ]);
+}
