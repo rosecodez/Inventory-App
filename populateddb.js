@@ -255,6 +255,7 @@ async function createFans() {
     ),
   ]);
 }
+
 async function createGPU(
   index,
   model,
@@ -310,6 +311,199 @@ async function createGPUs() {
       'NVIDIA GeForce RTX 40 Series',
       'GeForce RTX 4070 Ti',
       '2023-01-05'
+    ),
+  ]);
+}
+
+async function createMemory(
+  index,
+  brand,
+  type,
+  series,
+  model,
+  capacity,
+  speed,
+  dateFirstAvailable
+) {
+  const memoryDetail = {
+    index: index,
+    brand: brand,
+    type: type,
+    series: series,
+    model: model,
+    capacity: capacity,
+    speed: speed,
+    dateFirstAvailable: dateFirstAvailable,
+  };
+  const memory = new Memory(memoryDetail);
+  await memory.save();
+  memories[index] = memory;
+}
+
+async function createMemories() {
+  console.log('Adding memories');
+  await Promise.all([
+    createMemory(
+      0,
+      'G.SKILL',
+      '288-Pin PC RAM',
+      'Trident Z5 RGB Series',
+      'F5-6000J3636F16GX2-TZ5RK',
+      '32GB (2 x 16GB)',
+      'DDR5 6000 (PC5 48000)',
+      '2022-01-20'
+    ),
+    createMemory(
+      1,
+      'CORSAIR',
+      '288-Pin PC RAM',
+      'CORSAIR VENGEANCE RGB PRO',
+      'CMW32GX4M2D3600C18',
+      '32GB (2 x 16GB)',
+      'DDR4 3600 (PC4 28800)',
+      '2019-12-26'
+    ),
+    createMemory(
+      2,
+      'CORSAIR',
+      '262-Pin DDR5 SO-DIMM',
+      'Vengeance',
+      'CMSX64GX5M2A4800C40',
+      '64GB (2 x 32GB)',
+      '	DDR5 4800 (PC4 38400)',
+      '2022-04-13'
+    ),
+    createMemory(
+      3,
+      'G.SKILL',
+      '260-Pin DDR4 SO-DIMM',
+      'Ripjaws Series',
+      'F4-3200C22D-64GRS',
+      '64GB (2 x 32GB)',
+      'DDR4 3200 (PC4 25600)',
+      '2020-08-17'
+    ),
+  ]);
+}
+
+async function createMotherboard(
+  index,
+  brand,
+  model,
+  CPUSocketType,
+  CPUType,
+  chipset,
+  dateFirstAvailable
+) {
+  const motherboardDetail = {
+    index: index,
+    brand: brand,
+    model: model,
+    CPUSocketType: CPUSocketType,
+    CPUType: CPUType,
+    chipset: chipset,
+    dateFirstAvailable: dateFirstAvailable,
+  };
+  const motherboard = new Motherboard(motherboardDetail);
+  await motherboard.save();
+  motherboards[index] = motherboard;
+}
+
+async function createMotherboards() {
+  console.log('Adding motherboards');
+  await Promise.all([
+    createMotherboard(
+      0,
+      'ASRock',
+      'AM5',
+      'B650M Pro RS WiFi',
+      'Supports AMD Socket AM5 Ryzen 7000 Series Processors',
+      'AMD B650',
+      '2024-04-04'
+    ),
+    createMotherboard(
+      1,
+      'ASUS',
+      'ROG STRIX B650E-E GAMING WIFI',
+      'AM5',
+      'Supports AMD Ryzen 7000 Series Desktop Processors',
+      'AMD B650E',
+      '2022-10-10'
+    ),
+    createMotherboard(
+      2,
+      'ASUS',
+      'TUF GAMING B550M-PLUS',
+      'AM4',
+      'BIOS update might require for AMD Zen 3 Ryzen 5000 series CPU. Refer to ASUS website for CPU support list.',
+      'AMD B550',
+      '2024-03-12'
+    ),
+    createMotherboard(
+      3,
+      'ASRock',
+      'B650E PG-ITX WIFI',
+      'AM5',
+      'Supports AMD Ryzen 7000 Series Processors',
+      'AMD B650E',
+      '2022-10-10'
+    ),
+  ]);
+}
+
+async function createPSU(
+  index,
+  brand,
+  type,
+  series,
+  color,
+  maxPower,
+  dateFirstAvailable
+) {
+  const psuDetail = {
+    index: index,
+    brand: brand,
+    type: type,
+    series: series,
+    color: color,
+    maxPower: maxPower,
+    dateFirstAvailable: dateFirstAvailable,
+  };
+  const psu = new PSU(psuDetail);
+  await psu.save();
+  psus[index] = psu;
+}
+
+async function createPSUs() {
+  console.log('Adding psus');
+  await Promise.all([
+    createPSU(0, 'CORSAIR', 'ATX', 'RM850e', 'Black', '850W', '2023-03-09'),
+    createPSU(
+      1,
+      'Super Flower',
+      'ATX12V / EPS12V',
+      'Leadex III',
+      'Black',
+      '850W',
+      '2021-05-06'
+    ),
+    createPSU(
+      2,
+      'SeaSonic',
+      'Intel ATX 12 V',
+      'FOCUS GX',
+      'Black',
+      '1000W',
+      '2018-01-15'
+    ),
+    createPSU(
+      3,
+      'SAMA',
+      'ATX (ATX 3.0 Compatible)',
+      'Black Hole Series',
+      'White',
+      '1000W',
+      '2024-05-05'
     ),
   ]);
 }
