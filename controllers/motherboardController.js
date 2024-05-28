@@ -2,7 +2,7 @@ const Motherboard = require('../models/motherboard');
 const asyncHandler = require('express-async-handler');
 
 // Display list of all motherboards
-exports.motherboard = asyncHandler(async (req, res, next) => {
+exports.motherboard_list = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: motherboard list');
 });
 
@@ -32,7 +32,7 @@ exports.motherboard_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 // Display motherboard update form on GET.
-exports.case_update_get = asyncHandler(async (req, res, next) => {
+exports.motherboard_update_get = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: motherboard update GET');
 });
 

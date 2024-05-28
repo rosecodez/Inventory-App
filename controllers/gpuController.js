@@ -32,7 +32,7 @@ exports.gpu_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 // Display gpu update form on GET.
-exports.case_update_get = asyncHandler(async (req, res, next) => {
+exports.gpu_update_get = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: gpu update GET');
 });
 

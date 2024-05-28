@@ -2,7 +2,7 @@ const PSU = require('../models/psu');
 const asyncHandler = require('express-async-handler');
 
 // Display list of all psus
-exports.psu = asyncHandler(async (req, res, next) => {
+exports.psu_list = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: psu list');
 });
 
@@ -32,7 +32,7 @@ exports.psu_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 // Display psu update form on GET.
-exports.case_update_get = asyncHandler(async (req, res, next) => {
+exports.psu_update_get = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: psu update GET');
 });
 

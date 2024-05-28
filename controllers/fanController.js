@@ -32,7 +32,7 @@ exports.fan_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 // Display fan update form on GET.
-exports.case_update_get = asyncHandler(async (req, res, next) => {
+exports.fan_update_get = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: fan update GET');
 });
 

@@ -1,42 +1,44 @@
+// caseController.js
+
 const Case = require('../models/case');
 const asyncHandler = require('express-async-handler');
 
 // Display list of all cases
 exports.case_list = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: case list');
+  res.send('NOT IMPLEMENTED: Case list');
 });
 
 // Display detail page for a specific case
 exports.case_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: case detail: ${req.params.id}`);
+  res.send(`NOT IMPLEMENTED: Case detail: ${req.params.id}`);
 });
 
-// Display case create form on GET.
+// Display case create form on GET
 exports.case_create_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: case create GET');
+  res.send('NOT IMPLEMENTED: Case create GET');
 });
 
-// Handle case create on POST.
+// Handle case create on POST
 exports.case_create_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: case create POST');
+  res.send('NOT IMPLEMENTED: Case create POST');
 });
 
-// Display case delete form on GET.
+// Display case delete form on GET
 exports.case_delete_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: case delete GET');
+  res.send('NOT IMPLEMENTED: Case delete GET');
 });
 
-// Handle case delete on POST.
+// Handle case delete on POST
 exports.case_delete_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: case delete POST');
+  res.send('NOT IMPLEMENTED: Case delete POST');
 });
 
-// Display case update form on GET.
+// Display case update form on GET
 exports.case_update_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: case update GET');
+  res.send('NOT IMPLEMENTED: Case update GET');
 });
 
-// Handle case update on POST.
+// Handle case update on POST
 exports.case_update_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: case update POST');
+  res.send('NOT IMPLEMENTED: Case update POST');
 });

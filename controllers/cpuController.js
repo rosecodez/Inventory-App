@@ -1,42 +1,42 @@
-const CPU = require('../models/cpu');
 const asyncHandler = require('express-async-handler');
+const CPU = require('../models/cpu');
 
-// Display list of all cpus
+// Display list of all CPUs
 exports.cpu_list = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: cpu list');
 });
 
-// Display detail page for a specific cpu
+// Display detail page for a specific CPU
 exports.cpu_detail = asyncHandler(async (req, res, next) => {
   res.send(`NOT IMPLEMENTED: cpu detail: ${req.params.id}`);
 });
 
-// Display cpu create form on GET.
+// Display CPU create form on GET.
 exports.cpu_create_get = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: cpu create GET');
 });
 
-// Handle cpu create on POST.
+// Handle CPU create on POST.
 exports.cpu_create_post = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: cpu create POST');
 });
 
-// Display cpu delete form on GET.
+// Display CPU delete form on GET.
 exports.cpu_delete_get = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: cpu delete GET');
 });
 
-// Handle cpu delete on POST.
+// Handle CPU delete on POST.
 exports.cpu_delete_post = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: cpu delete POST');
 });
 
-// Display cpu update form on GET.
-exports.case_update_get = asyncHandler(async (req, res, next) => {
+// Display CPU update form on GET.
+exports.cpu_update_get = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: cpu update GET');
 });
 
-// Handle cpu update on POST.
+// Handle CPU update on POST.
 exports.cpu_update_post = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: cpu update POST');
 });

@@ -32,7 +32,7 @@ exports.memory_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 // Display memory update form on GET.
-exports.case_update_get = asyncHandler(async (req, res, next) => {
+exports.memory_update_get = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: memory update GET');
 });
 
