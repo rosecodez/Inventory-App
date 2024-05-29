@@ -1,0 +1,9 @@
+html(lang="en")
+  head
+    title= title
+  body
+    h1= title
+    ul
+      each case in caseList
+        li
+          a(href=`/cases/${case._id}`)= case.model

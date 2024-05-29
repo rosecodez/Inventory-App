@@ -10,6 +10,9 @@ const memory_controller = require('../controllers/memoryController');
 const motherboard_controller = require('../controllers/motherboardController');
 const psu_controller = require('../controllers/psuController');
 
+// GET catalog home page.
+router.get('/', gpu_controller.index);
+
 /// 1. ----------  Case routes  ---------- ///
 router.get('/cases', case_controller.case_list);
 router.get('/case/create', case_controller.case_create_get);

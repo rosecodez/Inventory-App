@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1= title
+  ul
+    each gpu in gpuList
+      li
+        a(href=`/gpus/${gpu._id}`)= `${gpu.brand} ${gpu.model}`

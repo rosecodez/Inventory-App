@@ -44,6 +44,7 @@ async function main() {
 async function createCase(
   index,
   brand,
+  model,
   type,
   series,
   color,
@@ -52,6 +53,7 @@ async function createCase(
   const casedetail = {
     index: index,
     brand: brand,
+    model: model,
     type: type,
     series: series,
     color: color,
@@ -120,12 +122,13 @@ async function createCPU(
 }
 
 async function createCPUs() {
-  console.log('Adding cpus');
+  console.log('Adding CPUs');
   await Promise.all([
     createCPU(
       0,
       'AMD',
       'Desktop',
+      'Ryzen 9 7950X3d',
       'Ryzen 9 7950X3d',
       '100-100000908WOF',
       'Socket AM5',
@@ -220,6 +223,7 @@ async function createFans() {
       'Fan & Heatsinks',
       'NH-D15 chromax.black',
       'n/a',
+      'n/a',
       '1',
       '1500 RPM±10%',
       '82.52CFM',
@@ -232,6 +236,7 @@ async function createFans() {
       'Corsair',
       'Case Fan',
       'iCUE SP120 RGB ELITE Triple Fan Kit',
+      'n/a',
       '3 Fans',
       '550 - 1500 +/- 10% RPM',
       '16.91 - 47.73 CFM',
@@ -244,6 +249,7 @@ async function createFans() {
       3,
       'Deepcool',
       'Fan & Heatsinks',
+      'n/a',
       'n/a',
       '1',
       '500~1850 RPM+/-10%',
@@ -258,16 +264,26 @@ async function createFans() {
 
 async function createGPU(
   index,
+  brand,
   model,
   gpuInterface,
   series,
   gpu,
   dateFirstAvailable
 ) {
+  const existingGPU = await GPU.findOne({ brand: brand, model: model });
+
+  if (existingGPU) {
+    console.log(`GPU ${brand} ${model} already exists. Skipping creation.`);
+    gpus[index] = existingGPU;
+    return existingGPU;
+  }
+
   const gpuDetail = {
     index: index,
+    brand: brand,
     model: model,
-    gpuinterface: gpuInterface,
+    gpuInterface: gpuInterface,
     series: series,
     GPU: gpu,
     dateFirstAvailable: dateFirstAvailable,
@@ -275,13 +291,15 @@ async function createGPU(
   const gpuObj = new GPU(gpuDetail);
   await gpuObj.save();
   gpus[index] = gpuObj;
+  return gpuObj;
 }
 
 async function createGPUs() {
-  console.log('Adding gpus');
-  await Promise.all([
+  console.log('Adding GPUs');
+  const addedGPUs = await Promise.all([
     createGPU(
       0,
+      'AMD',
       'RX6600 CLD 8G',
       'PCI Express 4.0',
       'AMD Radeon RX 6000 Series',
@@ -290,6 +308,7 @@ async function createGPUs() {
     ),
     createGPU(
       1,
+      'GIGABYTE',
       'GV-N4070WF3OC-12GD',
       'PCI Express 4.0 x16',
       'WINDFORCE',
@@ -298,6 +317,7 @@ async function createGPUs() {
     ),
     createGPU(
       2,
+      'ASUS',
       'DUAL-RTX3060-O12G-V2',
       'PCI Express 4.0',
       'Dual',
@@ -306,6 +326,7 @@ async function createGPUs() {
     ),
     createGPU(
       3,
+      'ASUS',
       'TUF-RTX4070TI-12G-GAMING',
       'PCI Express 4.0',
       'NVIDIA GeForce RTX 40 Series',
@@ -313,6 +334,11 @@ async function createGPUs() {
       '2023-01-05'
     ),
   ]);
+
+  console.log('Added GPUs:', addedGPUs);
+  for (let i = 0; i < addedGPUs.length; i++) {
+    gpus[i] = addedGPUs[i];
+  }
 }
 
 async function createMemory(
@@ -454,6 +480,7 @@ async function createMotherboards() {
 async function createPSU(
   index,
   brand,
+  model,
   type,
   series,
   color,
@@ -463,6 +490,7 @@ async function createPSU(
   const psuDetail = {
     index: index,
     brand: brand,
+    model: model,
     type: type,
     series: series,
     color: color,
@@ -477,10 +505,20 @@ async function createPSU(
 async function createPSUs() {
   console.log('Adding psus');
   await Promise.all([
-    createPSU(0, 'CORSAIR', 'ATX', 'RM850e', 'Black', '850W', '2023-03-09'),
+    createPSU(
+      0,
+      'CORSAIR',
+      'CP-9020263-NA',
+      'ATX',
+      'RM850e',
+      'Black',
+      '850W',
+      '2023-03-09'
+    ),
     createPSU(
       1,
       'Super Flower',
+      'CP-9020200-NA',
       'ATX12V / EPS12V',
       'Leadex III',
       'Black',
@@ -490,6 +528,7 @@ async function createPSUs() {
     createPSU(
       2,
       'SeaSonic',
+      'PS-TPD-0850FNFAGU-P',
       'Intel ATX 12 V',
       'FOCUS GX',
       'Black',
@@ -499,6 +538,7 @@ async function createPSUs() {
     createPSU(
       3,
       'SAMA',
+      '1000W',
       'ATX (ATX 3.0 Compatible)',
       'Black Hole Series',
       'White',
