@@ -1,5 +1,3 @@
-// app.js
-
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -18,7 +16,7 @@ const PSU = require('./models/psu');
 // route imports
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const inventoryAppRouter = require('./routes/inventory-app');
+const inventoryAppRouter = require('./routes/inventory-app'); // Correctly import inventory-app router
 
 // initialize express app
 const app = express();
@@ -31,7 +29,7 @@ const mongoDB =
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
-  await deleteDuplicates(); // Call function to delete duplicates
+  await deleteDuplicates();
 }
 
 const db = mongoose.connection;
@@ -57,7 +55,7 @@ app.set('view engine', 'pug');
 // Route handling
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/inventory-app', inventoryAppRouter);
+app.use('/inventory-app', inventoryAppRouter); // Use inventory-app router with the correct base path
 
 // 404 error handling
 app.use((req, res, next) => {

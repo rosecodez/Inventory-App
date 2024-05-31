@@ -3,10 +3,9 @@ const asyncHandler = require('express-async-handler');
 
 // Display list of all cases
 exports.case_list = asyncHandler(async (req, res, next) => {
-  console.log('Fetching cases...');
   const allCases = await Case.find().sort({ model: 1 }).exec();
   console.log('Fetched cases:', allCases);
-  res.render('case_list', { title: 'Case List', caseList: allCases });
+  res.render('case_list', { title: 'Case List', allCases });
 });
 
 // Display detail page for a specific case

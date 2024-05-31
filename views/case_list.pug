@@ -1,9 +1,11 @@
-html(lang="en")
-  head
-    title= title
-  body
-    h1= title
+extends layout
+
+block content
+  h1= title
+  if allCases && allCases.length
     ul
-      each case in caseList
+      each case in allCases
         li
-          a(href=`/cases/${case._id}`)= case.model
+          a(href='/cases/' + case._id)= `${case.brand} ${case.model}`
+  else
+    p No Cases found

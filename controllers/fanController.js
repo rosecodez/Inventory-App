@@ -3,7 +3,9 @@ const asyncHandler = require('express-async-handler');
 
 // Display list of all fans
 exports.fan_list = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: fan list');
+  const allFans = await Fan.find().sort({ model: 1 }).exec();
+  console.log('Fetched fans:', allFans);
+  res.render('fan_list', { title: 'Fans List', fanList: allFans });
 });
 
 // Display detail page for a specific fan

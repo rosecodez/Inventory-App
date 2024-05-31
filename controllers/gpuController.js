@@ -2,15 +2,14 @@ const GPU = require('../models/gpu');
 const asyncHandler = require('express-async-handler');
 
 exports.index = asyncHandler(async (req, res) => {
-  console.log('Fetching GPUs...');
   const allGPUs = await GPU.find().sort({ model: 1 }).exec();
-  console.log('Fetched GPUs:', allGPUs);
   res.render('gpu_list', { title: 'Graphics Cards List', gpuList: allGPUs });
 });
 
 // Display list of all gpus
 exports.gpu_list = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: gpu list');
+  const allGPUs = await GPU.find().sort({ model: 1 }).exec();
+  res.render('gpu_list', { title: 'Graphics Cards List', gpuList: allGPUs });
 });
 
 // Display detail page for a specific gpu

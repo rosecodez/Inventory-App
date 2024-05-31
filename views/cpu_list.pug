@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  if cpuList && cpuList.length
+    ul
+      each cpu in cpuList
+        li
+          a(href=`/processors/${cpu._id}`)= `${cpu.brand} ${cpu.type} ${cpu.series} ${cpu.socket} ${cpu.model}`
+  else
+    p No CPUs found

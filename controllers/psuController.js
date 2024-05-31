@@ -3,7 +3,12 @@ const asyncHandler = require('express-async-handler');
 
 // Display list of all psus
 exports.psu_list = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: psu list');
+  const allPSUs = await PSU.find().sort({ model: 1 }).exec();
+  console.log('Fetched psus:', allPSUs);
+  res.render('psu_list', {
+    title: 'PSUs List',
+    psuList: allPSUs,
+  });
 });
 
 // Display detail page for a specific psu

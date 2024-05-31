@@ -1,9 +1,11 @@
 const asyncHandler = require('express-async-handler');
 const CPU = require('../models/cpu');
 
-// Display list of all CPUs
-exports.cpu_list = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: cpu list');
+// Display list of all cases
+exports.case_list = asyncHandler(async (req, res, next) => {
+  const allCases = await Case.find().sort({ model: 1 }).exec();
+  console.log('Fetched cases: ', allCases); // Debugging console log
+  res.render('case_list', { title: 'Case List', caseList: allCases });
 });
 
 // Display detail page for a specific CPU

@@ -3,7 +3,12 @@ const asyncHandler = require('express-async-handler');
 
 // Display list of all memories
 exports.memory_list = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: memory list');
+  const allMemories = await Memory.find().sort({ model: 1 }).exec();
+  console.log('Fetched memories:', allMemories);
+  res.render('memory_list', {
+    title: 'Memories List',
+    memoryList: allMemories,
+  });
 });
 
 // Display detail page for a specific memory
