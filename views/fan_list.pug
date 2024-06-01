@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  if fanList && fanList.length
+    ul
+      each fan in fanList
+        li
+          a(href=`/fans/${fan._id}`)= `${fan.brand} ${fan.model} ${fan.type} ${fan.series} ${fan.fanCounts}`
+  else
+    p No fans found

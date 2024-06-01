@@ -4,6 +4,7 @@ const CPU = require('../models/cpu');
 // Display list of all CPUs
 exports.cpu_list = asyncHandler(async (req, res, next) => {
   const allCPUs = await CPU.find().sort({ model: 1 }).exec();
+  console.log(allCPUs);
   res.render('cpu_list', { title: 'Processors List', cpuList: allCPUs });
 });
 

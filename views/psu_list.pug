@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  if psuList && psuList.length
+    ul
+      each psu in psuList
+        li
+          a(href=`/psus/${psu._id}`)= `${psu.brand} ${psu.maxPower} ${psu.type} ${psu.series}`
+  else
+    p No power supplies found

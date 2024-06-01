@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  if gpuList && gpuList.length
+    ul
+      each gpu in gpuList
+        li
+          a(href=`/gpus/${gpu._id}`)= `${gpu.brand} ${gpu.GPU} ${gpu.series} ${gpu.gpuInterface} ${gpu.model}`
+  else
+    p No gpus found

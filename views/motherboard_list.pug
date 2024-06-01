@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  if motherboardList && motherboardList.length
+    ul
+      each motherboard in motherboardList
+        li
+          a(href=`/motherboards/${motherboard._id}`)= `${motherboard.brand} ${motherboard.model} ${motherboard.CPUSocketType}`
+  else
+    p No motherboards found
