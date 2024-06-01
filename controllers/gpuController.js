@@ -8,8 +8,7 @@ exports.index = asyncHandler(async (req, res) => {
 
 // Display list of all gpus
 exports.gpu_list = asyncHandler(async (req, res, next) => {
-  const allGPUs = await GPU.find().sort({ model: 1 }).exec();
-  res.render('gpu_list', { title: 'Graphics Cards List', gpuList: allGPUs });
+  res.send('NOT IMPLEMENTED: gpu list');
 });
 
 // Display detail page for a specific gpu

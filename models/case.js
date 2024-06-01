@@ -9,7 +9,7 @@ const CaseSchema = new Schema({
   type: { type: String, required: true },
   series: { type: String, required: true },
   color: { type: String, required: true },
-  dateFirstAvailable: { type: Date },
+  dateFirstAvailable: { type: Date, required: true },
 });
 
 CaseSchema.virtual('url').get(function () {

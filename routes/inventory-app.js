@@ -2,102 +2,103 @@ const express = require('express');
 const router = express.Router();
 
 // Import controller modules
-const caseController = require('../controllers/caseController');
-const cpuController = require('../controllers/cpuController');
-const fanController = require('../controllers/fanController');
-const gpuController = require('../controllers/gpuController');
-const memoryController = require('../controllers/memoryController');
-const motherboardController = require('../controllers/motherboardController');
-const psuController = require('../controllers/psuController');
+const case_controller = require('../controllers/caseController');
+const cpu_controller = require('../controllers/cpuController');
+const fan_controller = require('../controllers/fanController');
+const gpu_controller = require('../controllers/gpuController');
+const memory_controller = require('../controllers/memoryController');
+const motherboard_controller = require('../controllers/motherboardController');
+const psu_controller = require('../controllers/psuController');
 
-// GET inventory home page.
-router.get('/', (req, res) => {
-  res.redirect('/inventory-app/cases');
-});
+// GET catalog home page.
+router.get('/', gpu_controller.index);
 
 /// 1. ----------  Case routes  ---------- ///
-router.get('/cases', caseController.case_list);
-router.get('/case/create', caseController.case_create_get);
-router.post('/case/create', caseController.case_create_post);
-router.get('/case/:id/delete', caseController.case_delete_get);
-router.post('/case/:id/delete', caseController.case_delete_post);
-router.get('/case/:id/update', caseController.case_update_get);
-router.post('/case/:id/update', caseController.case_update_post);
-router.get('/case/:id', caseController.case_detail);
+router.get('/case/create', case_controller.case_create_get);
+router.post('/case/create', case_controller.case_create_post);
+router.get('/case/:id/delete', case_controller.case_delete_get);
+router.post('/case/:id/delete', case_controller.case_delete_post);
+router.get('/case/:id/update', case_controller.case_update_get);
+router.post('/case/:id/update', case_controller.case_update_post);
+router.get('/case/:id', case_controller.case_detail);
+router.get('/cases', case_controller.case_list);
 
 /// 2. ----------  CPU routes  ---------- ///
-router.get('/processors', cpuController.cpu_list);
-router.get('/processors/create', cpuController.cpu_create_get);
-router.post('/processors/create', cpuController.cpu_create_post);
-router.get('/processors/:id/delete', cpuController.cpu_delete_get);
-router.post('/processors/:id/delete', cpuController.cpu_delete_post);
-router.get('/processors/:id/update', cpuController.cpu_update_get);
-router.post('/processors/:id/update', cpuController.cpu_update_post);
-router.get('/processors/:id', cpuController.cpu_detail);
+router.get('/cpu/create', cpu_controller.cpu_create_get);
+router.post('/cpu/create', cpu_controller.cpu_create_post);
+router.get('/cpu/:id/delete', cpu_controller.cpu_delete_get);
+router.post('/cpu/:id/delete', cpu_controller.cpu_delete_post);
+router.get('/cpu/:id/update', cpu_controller.cpu_update_get);
+router.post('/cpu/:id/update', cpu_controller.cpu_update_post);
+router.get('/cpu/:id', cpu_controller.cpu_detail);
+router.get('/cpus', cpu_controller.cpu_list);
 
 /// 3. ----------  Fan routes  ---------- ///
-router.get('/fans', fanController.fan_list);
-router.get('/fan/create', fanController.fan_create_get);
-router.post('/fan/create', fanController.fan_create_post);
-router.get('/fan/:id/delete', fanController.fan_delete_get);
-router.post('/fan/:id/delete', fanController.fan_delete_post);
-router.get('/fan/:id/update', fanController.fan_update_get);
-router.post('/fan/:id/update', fanController.fan_update_post);
-router.get('/fan/:id', fanController.fan_detail);
+router.get('/fan/create', fan_controller.fan_create_get);
+router.post('/fan/create', fan_controller.fan_create_post);
+router.get('/fan/:id/delete', fan_controller.fan_delete_get);
+router.post('/fan/:id/delete', fan_controller.fan_delete_post);
+router.get('/fan/:id/update', fan_controller.fan_update_get);
+router.post('/fan/:id/update', fan_controller.fan_update_post);
+router.get('/fan/:id', fan_controller.fan_detail);
+router.get('/fans', fan_controller.fan_list);
 
 /// 4. ----------  GPU routes  ---------- ///
-router.get('/gpus', gpuController.gpu_list);
-router.get('/gpu/create', gpuController.gpu_create_get);
-router.post('/gpu/create', gpuController.gpu_create_post);
-router.get('/gpu/:id/delete', gpuController.gpu_delete_get);
-router.post('/gpu/:id/delete', gpuController.gpu_delete_post);
-router.get('/gpu/:id/update', gpuController.gpu_update_get);
-router.post('/gpu/:id/update', gpuController.gpu_update_post);
-router.get('/gpu/:id', gpuController.gpu_detail);
+router.get('/gpu/create', gpu_controller.gpu_create_get);
+router.post('/gpu/create', gpu_controller.gpu_create_post);
+router.get('/gpu/:id/delete', gpu_controller.gpu_delete_get);
+router.post('/gpu/:id/delete', gpu_controller.gpu_delete_post);
+router.get('/gpu/:id/update', gpu_controller.gpu_update_get);
+router.post('/gpu/:id/update', gpu_controller.gpu_update_post);
+router.get('/gpu/:id', gpu_controller.gpu_detail);
+router.get('/gpus', gpu_controller.gpu_list);
 
 /// 5. ----------  Memory routes  ---------- ///
-router.get('/memories', memoryController.memory_list);
-router.get('/memory/create', memoryController.memory_create_get);
-router.post('/memory/create', memoryController.memory_create_post);
-router.get('/memory/:id/delete', memoryController.memory_delete_get);
-router.post('/memory/:id/delete', memoryController.memory_delete_post);
-router.get('/memory/:id/update', memoryController.memory_update_get);
-router.post('/memory/:id/update', memoryController.memory_update_post);
-router.get('/memory/:id', memoryController.memory_detail);
+router.get('/memory/create', memory_controller.memory_create_get);
+router.post('/memory/create', memory_controller.memory_create_post);
+router.get('/memory/:id/delete', memory_controller.memory_delete_get);
+router.post('/memory/:id/delete', memory_controller.memory_delete_post);
+router.get('/memory/:id/update', memory_controller.memory_update_get);
+router.post('/memory/:id/update', memory_controller.memory_update_post);
+router.get('/memory/:id', memory_controller.memory_detail);
+router.get('/memories', memory_controller.memory_list);
 
 /// 6. ----------  Motherboard routes  ---------- ///
-router.get('/motherboards', motherboardController.motherboard_list);
-router.get('/motherboard/create', motherboardController.motherboard_create_get);
+router.get(
+  '/motherboard/create',
+  motherboard_controller.motherboard_create_get
+);
 router.post(
   '/motherboard/create',
-  motherboardController.motherboard_create_post
+  motherboard_controller.motherboard_create_post
 );
 router.get(
   '/motherboard/:id/delete',
-  motherboardController.motherboard_delete_get
+  motherboard_controller.motherboard_delete_get
 );
 router.post(
   '/motherboard/:id/delete',
-  motherboardController.motherboard_delete_post
+  motherboard_controller.motherboard_delete_post
 );
 router.get(
   '/motherboard/:id/update',
-  motherboardController.motherboard_update_get
+  motherboard_controller.motherboard_update_get
 );
 router.post(
   '/motherboard/:id/update',
-  motherboardController.motherboard_update_post
+  motherboard_controller.motherboard_update_post
 );
-router.get('/motherboard/:id', motherboardController.motherboard_detail);
+router.get('/motherboard/:id', motherboard_controller.motherboard_detail);
+router.get('/motherboards', motherboard_controller.motherboard_list);
 
 /// 7. ----------  PSU routes  ---------- ///
-router.get('/psus', psuController.psu_list);
-router.get('/psu/create', psuController.psu_create_get);
-router.post('/psu/create', psuController.psu_create_post);
-router.get('/psu/:id/delete', psuController.psu_delete_get);
-router.post('/psu/:id/delete', psuController.psu_delete_post);
-router.get('/psu/:id/update', psuController.psu_update_get);
-router.post('/psu/:id/update', psuController.psu_update_post);
-router.get('/psu/:id', psuController.psu_detail);
+router.get('/psu/create', psu_controller.psu_create_get);
+router.post('/psu/create', psu_controller.psu_create_post);
+router.get('/psu/:id/delete', psu_controller.psu_delete_get);
+router.post('/psu/:id/delete', psu_controller.psu_delete_post);
+router.get('/psu/:id/update', psu_controller.psu_update_get);
+router.post('/psu/:id/update', psu_controller.psu_update_post);
+router.get('/psu/:id', psu_controller.psu_detail);
+router.get('/psus', psu_controller.psu_list);
 
 module.exports = router;

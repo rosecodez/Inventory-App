@@ -2,10 +2,8 @@ extends layout
 
 block content
   h1= title
-  if allCases && allCases.length
-    ul
-      each case in allCases
-        li
-          a(href='/cases/' + case._id)= `${case.brand} ${case.model}`
-  else
-    p No Cases found
+  ul
+    - for (let caseItem of caseList)
+      li
+        a(href=`/cases/${caseItem._id}`)= `${caseItem.brand} ${caseItem.model} ${caseItem.series} ${caseItem.color} ${caseItem.type}`
+        br

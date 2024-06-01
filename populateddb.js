@@ -50,7 +50,7 @@ async function createCase(
   color,
   dateFirstAvailable
 ) {
-  const casedetail = {
+  const caseDetail = {
     index: index,
     brand: brand,
     model: model,
@@ -59,10 +59,9 @@ async function createCase(
     color: color,
     dateFirstAvailable: dateFirstAvailable,
   };
-  // case is reserved in JavaScript so using 'ccase'
-  const ccase = new Case(casedetail);
-  await ccase.save();
-  cases[index] = ccase;
+  const newCase = new Case(caseDetail);
+  await newCase.save();
+  cases[index] = newCase;
 }
 
 async function createCases() {
@@ -70,29 +69,40 @@ async function createCases() {
   await Promise.all([
     createCase(
       0,
+      'SAMA',
+      'None',
+      'ATX Full Tower',
+      'NEVIEW 4503',
+      'White',
+      '2024-01-16'
+    ),
+    createCase(
+      1,
       'Corsair',
-      'ATX Mid Tower',
       '4000D Airflow',
+      'ATX Mid Tower',
+      'none',
       'Black',
       '2020-05-14'
     ),
     createCase(
-      1,
+      2,
       'Fractal Design',
-      'ATX Mid Tower',
       'North',
+      'ATX Mid Tower',
+      'none',
       'Charcoal black',
       '2022-12-07'
     ),
     createCase(
-      2,
+      3,
       'NZXT',
+      'CM-H91FB-01',
       'ATX Mid Tower',
       'H9 Flow - All Black',
       'Black',
       '2020-05-14'
     ),
-    createCase(3, 'SAMA', 'ATX Full Tower', 'None', 'White', '2024-01-16'),
   ]);
 }
 
