@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h2= `${memoryItem.brand} ${memoryItem.series} ${memoryItem.capacity} ${memoryItem.type} ${memoryItem.speed}`
+  p
+    h3= title
+    | Brand: #{memoryItem.brand}
+    br
+    | Model: #{memoryItem.model}
+    br
+    | Series: #{memoryItem.series}
+    br
+    | Capacity: #{memoryItem.capacity}
+    br
+    | Type: #{memoryItem.type}
+    br
+    | Date First Available: #{memoryItem.dateFirstAvailable_formatted}

@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h2= `${motherboardItem.brand} ${motherboardItem.model} ${motherboardItem.CPUSocketType}`
+  p
+    h3= title
+    | Brand: #{motherboardItem.brand}
+    br
+    | Model: #{motherboardItem.model}
+    br
+    | CPU Socket Type: #{motherboardItem.CPUSocketType}
+    br
+    | CPU Type: #{motherboardItem.CPUType}
+    br
+    | Chipset: #{motherboardItem.chipset}
+    br
+    | Date First Available: #{motherboardItem.dateFirstAvailable_formatted}

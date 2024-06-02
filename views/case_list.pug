@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   ul
-    - for (let caseItem of caseList)
+    each caseItem in caseList
       li
-        a(href=`/cases/${caseItem._id}`)= `${caseItem.brand} ${caseItem.model} ${caseItem.series} ${caseItem.color} ${caseItem.type}`
+        a(href=`/inventory-app/case/${caseItem._id}`)= `${caseItem.brand} ${caseItem.model} ${caseItem.series} ${caseItem.color} ${caseItem.type}`
         br

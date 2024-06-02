@@ -6,6 +6,6 @@ block content
     ul
       each memory in memoryList
         li
-          a(href=`/memorys/${memory._id}`)= `${memory.brand} ${memory.type} ${memory.series} ${memory.speed}`
+          a(href=`/inventory-app/memory/${memory._id}`)= `${memory.brand} ${memory.series} ${memory.capacity} ${memory.type} ${memory.speed}`
   else
     p No memories found

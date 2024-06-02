@@ -10,7 +10,18 @@ exports.cpu_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific CPU
 exports.cpu_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: cpu detail: ${req.params.id}`);
+  const cpuItem = await CPU.findById(req.params.id);
+
+  if (!cpuItem) {
+    const err = new Error('cpu not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('cpu_detail', {
+    title: 'Processor details',
+    cpuItem: cpuItem,
+  });
 });
 
 // Display CPU create form on GET.

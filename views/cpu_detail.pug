@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h2= `${cpuItem.brand} ${cpuItem.type} ${cpuItem.series} ${cpuItem.socket} ${cpuItem.model}`
+  p
+    h3= title
+    | Brand: #{cpuItem.brand}
+    br
+    | Model: #{cpuItem.model}
+    br
+    | Type: #{cpuItem.type}
+    br
+    | Series: #{cpuItem.series}
+    br
+    | Socket: #{cpuItem.socket}
+    br
+    | Date First Available: #{cpuItem.dateFirstAvailable_formatted}

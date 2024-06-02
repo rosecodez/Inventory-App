@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h2= `${psuItem.brand} ${psuItem.maxPower} ${psuItem.type} ${psuItem.series}`
+  p
+    h3= title
+    | Brand: #{psuItem.brand}
+    br
+    | Model: #{psuItem.model}
+    br
+    | Type: #{psuItem.type}
+    br
+    | Series: #{psuItem.series}
+    br
+    | Color: #{psuItem.color}
+    br
+    | Max power: #{psuItem.maxPower}
+    br
+    | Date First Available: #{psuItem.dateFirstAvailable_formatted}

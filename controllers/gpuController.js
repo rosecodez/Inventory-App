@@ -14,7 +14,18 @@ exports.gpu_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific gpu
 exports.gpu_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: gpu detail: ${req.params.id}`);
+  const gpuItem = await GPU.findById(req.params.id);
+
+  if (!gpuItem) {
+    const err = new Error('gpu not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('gpu_detail', {
+    title: 'Graphics card details',
+    gpuItem: gpuItem,
+  });
 });
 
 // Display gpu create form on GET.

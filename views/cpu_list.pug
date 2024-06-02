@@ -6,6 +6,6 @@ block content
     ul
       each cpu in cpuList
         li
-          a(href=`/cpus/${cpu._id}`)= `${cpu.brand} ${cpu.type} ${cpu.series} ${cpu.socket} ${cpu.model}`
+          a(href=`/inventory-app/cpu/${cpu._id}`)= `${cpu.brand} ${cpu.type} ${cpu.series} ${cpu.socket} ${cpu.model}`
   else
     p No CPUs found

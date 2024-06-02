@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h2= `${gpuItem.brand} ${gpuItem.model} ${gpuItem.series}`
+  p
+    h3= title
+    | Brand: #{gpuItem.brand}
+    br 
+    | Model: #{gpuItem.model}
+    br
+    | Interface: #{gpuItem.gpuInterface}
+    br
+    | Series: #{gpuItem.series}
+    br
+    | GPU: #{gpuItem.GPU}
+    br
+    | Date First Available: #{gpuItem.dateFirstAvailable_formatted}

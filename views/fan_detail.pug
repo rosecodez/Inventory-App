@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h2= `${fanItem.brand} ${fanItem.model} ${fanItem.series} ${fanItem.color} ${fanItem.type}`
+  p
+    h3= title
+    | Brand: #{fanItem.brand}
+    br
+    | Model: #{fanItem.model}
+    br
+    | Series: #{fanItem.series}
+    br
+    | Color: #{fanItem.color}
+    br
+    | Type: #{fanItem.type}
+    br
+    | Fan Counts: #{fanItem.fanCounts}
+    br
+    | RPM: #{fanItem.rpm}
+    br
+    | Air flow: #{fanItem.airFlow}
+    br
+    | Noise Level: #{fanItem.noiseLevel}
+    br
+    | LEd: #{fanItem.LED}
+    br
+    | Dimensions: #{fanItem.dimensions}
+    br
+    | Date First Available: #{fanItem.dateFirstAvailable_formatted}

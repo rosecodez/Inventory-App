@@ -9,7 +9,18 @@ exports.case_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific case
 exports.case_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: Case detail: ${req.params.id}`);
+  const caseItem = await Case.findById(req.params.id);
+
+  if (!caseItem) {
+    const err = new Error('Case not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('case_detail', {
+    title: 'Case details',
+    caseItem: caseItem,
+  });
 });
 
 // Display case create form on GET

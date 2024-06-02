@@ -13,7 +13,18 @@ exports.memory_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific memory
 exports.memory_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: memory detail: ${req.params.id}`);
+  const memoryItem = await Memory.findById(req.params.id);
+
+  if (!memoryItem) {
+    const err = new Error('memory not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('memory_detail', {
+    title: 'Memory details',
+    memoryItem: memoryItem,
+  });
 });
 
 // Display memory create form on GET.

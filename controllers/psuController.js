@@ -13,7 +13,18 @@ exports.psu_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific psu
 exports.psu_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: psu detail: ${req.params.id}`);
+  const psuItem = await PSU.findById(req.params.id);
+
+  if (!psuItem) {
+    const err = new Error('psu not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('psu_detail', {
+    title: 'Power supply details',
+    psuItem: psuItem,
+  });
 });
 
 // Display psu create form on GET.

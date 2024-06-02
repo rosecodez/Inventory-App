@@ -6,6 +6,6 @@ block content
     ul
       each fan in fanList
         li
-          a(href=`/fans/${fan._id}`)= `${fan.brand} ${fan.model} ${fan.type} ${fan.series} ${fan.fanCounts}`
+          a(href=`/inventory-app/fan/${fan._id}`)= `${fan.brand} ${fan.model} ${fan.type} ${fan.series} ${fan.fanCounts}`
   else
     p No fans found

@@ -10,7 +10,18 @@ exports.fan_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific fan
 exports.fan_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: fan detail: ${req.params.id}`);
+  const fanItem = await Fan.findById(req.params.id);
+
+  if (!fanItem) {
+    const err = new Error('fan not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('fan_detail', {
+    title: 'Fan details',
+    fanItem: fanItem,
+  });
 });
 
 // Display fan create form on GET.
