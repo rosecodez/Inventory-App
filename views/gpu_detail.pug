@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h2= `${gpuItem.brand} ${gpuItem.model} ${gpuItem.series}`
+  h2 #{gpuItem.brand} #{gpuItem.model} #{gpuItem.series}
   p
     h3= title
     | Brand: #{gpuItem.brand}

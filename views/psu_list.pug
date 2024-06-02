@@ -6,6 +6,6 @@ block content
     ul
       each psu in psuList
         li
-          a(href=`/inventory-app/psu/${psu._id}`)= `${psu.brand} ${psu.maxPower} ${psu.type} ${psu.series}`
+          a(href=`/inventory-app/psu/${psu._id}`) #{psu.brand} #{psu.maxPower} #{psu.type} #{psu.series}
   else
     p No power supplies found

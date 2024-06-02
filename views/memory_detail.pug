@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h2= `${memoryItem.brand} ${memoryItem.series} ${memoryItem.capacity} ${memoryItem.type} ${memoryItem.speed}`
+  h2 #{memoryItem.brand} #{memoryItem.series} #{memoryItem.capacity} #{memoryItem.type} #{memoryItem.speed}
   p
     h3= title
     | Brand: #{memoryItem.brand}
@@ -13,5 +13,7 @@ block content
     | Capacity: #{memoryItem.capacity}
     br
     | Type: #{memoryItem.type}
+    br
+    | Speed: #{memoryItem.speed}
     br
     | Date First Available: #{memoryItem.dateFirstAvailable_formatted}

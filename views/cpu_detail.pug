@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h2= `${cpuItem.brand} ${cpuItem.type} ${cpuItem.series} ${cpuItem.socket} ${cpuItem.model}`
+  h2 #{cpuItem.brand} #{cpuItem.type} #{cpuItem.series} #{cpuItem.socket} #{cpuItem.model}
   p
     h3= title
     | Brand: #{cpuItem.brand}

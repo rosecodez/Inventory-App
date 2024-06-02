@@ -6,6 +6,6 @@ block content
     ul
       each gpu in gpuList
         li
-          a(href=`/inventory-app/gpu/${gpu._id}`)= `${gpu.brand} ${gpu.GPU} ${gpu.series} ${gpu.gpuInterface} ${gpu.model}`
+          a(href=`/inventory-app/gpu/${gpu._id}`) #{gpu.brand} #{gpu.GPU} #{gpu.series} #{gpu.gpuInterface} #{gpu.model}
   else
-    p No gpus found
+    p No GPUs found

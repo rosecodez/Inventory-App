@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h2= `${fanItem.brand} ${fanItem.model} ${fanItem.series} ${fanItem.color} ${fanItem.type}`
+  h2 #{fanItem.brand} #{fanItem.model} #{fanItem.series} #{fanItem.color} #{fanItem.type}
   p
     h3= title
     | Brand: #{fanItem.brand}
@@ -22,7 +22,7 @@ block content
     br
     | Noise Level: #{fanItem.noiseLevel}
     br
-    | LEd: #{fanItem.LED}
+    | LED: #{fanItem.LED}
     br
     | Dimensions: #{fanItem.dimensions}
     br

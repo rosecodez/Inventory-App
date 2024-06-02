@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h2= `${psuItem.brand} ${psuItem.maxPower} ${psuItem.type} ${psuItem.series}`
+  h2 #{psuItem.brand} #{psuItem.maxPower} #{psuItem.type} #{psuItem.series}
   p
     h3= title
     | Brand: #{psuItem.brand}
@@ -14,6 +14,6 @@ block content
     br
     | Color: #{psuItem.color}
     br
-    | Max power: #{psuItem.maxPower}
+    | Max Power: #{psuItem.maxPower}
     br
     | Date First Available: #{psuItem.dateFirstAvailable_formatted}

@@ -6,6 +6,6 @@ block content
     ul
       each motherboard in motherboardList
         li
-          a(href=`/inventory-app/motherboard/${motherboard._id}`)= `${motherboard.brand} ${motherboard.model} ${motherboard.CPUSocketType}`
+          a(href=`/inventory-app/motherboard/${motherboard._id}`) #{motherboard.brand} #{motherboard.model} #{motherboard.CPUSocketType}
   else
     p No motherboards found
