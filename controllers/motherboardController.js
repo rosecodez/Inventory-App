@@ -1,5 +1,6 @@
 const Motherboard = require('../models/motherboard');
 const asyncHandler = require('express-async-handler');
+const { body, validationResult } = require('express-validator');
 
 // Display list of all motherboards
 exports.motherboard_list = asyncHandler(async (req, res, next) => {
@@ -29,7 +30,7 @@ exports.motherboard_detail = asyncHandler(async (req, res, next) => {
 
 // Display motherboard create form on GET.
 exports.motherboard_create_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: motherboard create GET');
+  res.render('motherboard_form', { title: 'Create Motherboard' });
 });
 
 // Handle motherboard create on POST.

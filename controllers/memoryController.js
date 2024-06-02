@@ -1,5 +1,6 @@
 const Memory = require('../models/memory');
 const asyncHandler = require('express-async-handler');
+const { body, validationResult } = require('express-validator');
 
 // Display list of all memories
 exports.memory_list = asyncHandler(async (req, res, next) => {
@@ -29,7 +30,7 @@ exports.memory_detail = asyncHandler(async (req, res, next) => {
 
 // Display memory create form on GET.
 exports.memory_create_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: memory create GET');
+  res.render('memory_form', { title: 'Create Memory' });
 });
 
 // Handle memory create on POST.

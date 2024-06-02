@@ -1,5 +1,6 @@
 const Case = require('../models/case');
 const asyncHandler = require('express-async-handler');
+const { body, validationResult } = require('express-validator');
 
 // Display list of all cases
 exports.case_list = asyncHandler(async (req, res, next) => {
@@ -25,7 +26,7 @@ exports.case_detail = asyncHandler(async (req, res, next) => {
 
 // Display case create form on GET
 exports.case_create_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Case create GET');
+  res.render('case_form', { title: 'Create case' });
 });
 
 // Handle case create on POST

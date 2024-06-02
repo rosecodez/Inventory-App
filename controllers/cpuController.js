@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const CPU = require('../models/cpu');
+const { body, validationResult } = require('express-validator');
 
 // Display list of all CPUs
 exports.cpu_list = asyncHandler(async (req, res, next) => {
@@ -26,7 +27,7 @@ exports.cpu_detail = asyncHandler(async (req, res, next) => {
 
 // Display CPU create form on GET.
 exports.cpu_create_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: cpu create GET');
+  res.render('cpu_form', { title: 'Create CPU' });
 });
 
 // Handle CPU create on POST.

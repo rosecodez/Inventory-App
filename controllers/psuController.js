@@ -1,5 +1,6 @@
 const PSU = require('../models/psu');
 const asyncHandler = require('express-async-handler');
+const { body, validationResult } = require('express-validator');
 
 // Display list of all psus
 exports.psu_list = asyncHandler(async (req, res, next) => {
@@ -29,7 +30,7 @@ exports.psu_detail = asyncHandler(async (req, res, next) => {
 
 // Display psu create form on GET.
 exports.psu_create_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: psu create GET');
+  res.render('psu_form', { title: 'Create Power Supply' });
 });
 
 // Handle psu create on POST.

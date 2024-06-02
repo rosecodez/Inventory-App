@@ -1,5 +1,6 @@
 const GPU = require('../models/gpu');
 const asyncHandler = require('express-async-handler');
+const { body, validationResult } = require('express-validator');
 
 exports.index = asyncHandler(async (req, res) => {
   const allGPUs = await GPU.find().sort({ model: 1 }).exec();
@@ -30,7 +31,7 @@ exports.gpu_detail = asyncHandler(async (req, res, next) => {
 
 // Display gpu create form on GET.
 exports.gpu_create_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: gpu create GET');
+  res.render('gpu_form', { title: 'Create Graphics Card' });
 });
 
 // Handle gpu create on POST.

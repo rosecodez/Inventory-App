@@ -1,5 +1,6 @@
 const Fan = require('../models/fan');
 const asyncHandler = require('express-async-handler');
+const { body, validationResult } = require('express-validator');
 
 // Display list of all fans
 exports.fan_list = asyncHandler(async (req, res, next) => {
@@ -26,7 +27,7 @@ exports.fan_detail = asyncHandler(async (req, res, next) => {
 
 // Display fan create form on GET.
 exports.fan_create_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: fan create GET');
+  res.render('FAN_form', { title: 'Create Fan' });
 });
 
 // Handle fan create on POST.
