@@ -30,10 +30,55 @@ exports.case_create_get = asyncHandler(async (req, res, next) => {
 });
 
 // Handle case create on POST
-exports.case_create_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Case create POST');
-});
+exports.case_create_post = [
+  // Validate and sanitize fields
+  body('brand', 'Brand name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('model', 'Model name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('type', 'Type must be specified').trim().isLength({ min: 1 }).escape(),
+  body('series', 'Series name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('color', 'Color name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('dateFirstAvailable', 'Invalid date')
+    .optional({ checkFalsy: true })
+    .isISO8601()
+    .toDate(),
 
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      res.render('case_form', {
+        title: 'Create Case',
+        caseItem: req.body,
+        errors: errors.array(),
+      });
+      return;
+    }
+
+    const { brand, model, type, series, color, dateFirstAvailable } = req.body;
+    const newCase = new Case({
+      brand,
+      model,
+      type,
+      series,
+      color,
+      dateFirstAvailable,
+    });
+    await newCase.save();
+    res.redirect(`/inventory-app/case/${newCase._id}`);
+  }),
+];
 // Display case delete form on GET
 exports.case_delete_get = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: Case delete GET');

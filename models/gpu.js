@@ -13,7 +13,7 @@ const GPUSchema = new Schema({
 });
 
 GPUSchema.virtual('url').get(function () {
-  return `/catalog/gpu/${this._id}`;
+  return `/inventory-app/gpu/${this._id}`;
 });
 
 GPUSchema.virtual('dateFirstAvailable_formatted').get(function () {

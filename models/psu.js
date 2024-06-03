@@ -14,7 +14,7 @@ const PSUSchema = new Schema({
 });
 
 PSUSchema.virtual('url').get(function () {
-  return `/catalog/psu/${this._id}`;
+  return `/inventory-app/psu/${this._id}`;
 });
 
 PSUSchema.virtual('dateFirstAvailable_formatted').get(function () {

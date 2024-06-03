@@ -13,7 +13,7 @@ const MotherboardSchema = new Schema({
 });
 
 MotherboardSchema.virtual('url').get(function () {
-  return `/catalog/motherboard/${this._id}`;
+  return `/inventory-app/motherboard/${this._id}`;
 });
 
 MotherboardSchema.virtual('dateFirstAvailable_formatted').get(function () {

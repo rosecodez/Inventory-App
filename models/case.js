@@ -13,7 +13,7 @@ const CaseSchema = new Schema({
 });
 
 CaseSchema.virtual('url').get(function () {
-  return `/catalog/case/${this._id}`;
+  return `/inventory-app/case/${this._id}`;
 });
 
 CaseSchema.virtual('dateFirstAvailable_formatted').get(function () {

@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+  a.btn.btn-primary(href="/inventory-app/case/create", role="button") Create New Case
   ul
     each caseItem in caseList
       li

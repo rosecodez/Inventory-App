@@ -14,7 +14,7 @@ const MemorySchema = new Schema({
 });
 
 MemorySchema.virtual('url').get(function () {
-  return `/catalog/memory/${this._id}`;
+  return `/inventory-app/memory/${this._id}`;
 });
 
 MemorySchema.virtual('dateFirstAvailable_formatted').get(function () {

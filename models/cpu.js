@@ -14,7 +14,7 @@ const CPUSchema = new Schema({
 });
 
 CPUSchema.virtual('url').get(function () {
-  return `/catalog/cpu/${this._id}`;
+  return `/inventory-app/catalog/cpu/${this._id}`;
 });
 
 CPUSchema.virtual('dateFirstAvailable_formatted').get(function () {

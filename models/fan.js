@@ -18,7 +18,7 @@ const FanSchema = new Schema({
 });
 
 FanSchema.virtual('url').get(function () {
-  return `/catalog/fan/${this._id}`;
+  return `/inventory-app/fan/${this._id}`;
 });
 
 FanSchema.virtual('dateFirstAvailable_formatted').get(function () {
