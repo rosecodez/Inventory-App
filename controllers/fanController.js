@@ -30,43 +30,31 @@ exports.fan_create_get = asyncHandler(async (req, res, next) => {
   res.render('fan_form', { title: 'Create Fan' });
 });
 
-// Handle fan create on POST.
+// Handle fan create on POST
 exports.fan_create_post = [
   // Validate and sanitize fields
-  body('brand', 'Brand name must be specified')
-    .trim()
-    .isLength({ min: 1 })
-    .escape(),
-  body('model', 'Model name must be specified')
-    .trim()
-    .isLength({ min: 1 })
-    .escape(),
+  body('brand', 'Brand must be specified').trim().isLength({ min: 1 }).escape(),
+  body('model', 'Model must be specified').trim().isLength({ min: 1 }).escape(), // Add model validation
   body('type', 'Type must be specified').trim().isLength({ min: 1 }).escape(),
-  body('series', 'Series name must be specified')
+  body('series', 'Series must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(), // Add series validation
+  body('fanCounts', 'Fan counts must be specified')
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body('fanCounts', 'Fan counts name must be specified')
+  body('rpm', 'RPM must be specified').trim().isLength({ min: 1 }).escape(),
+  body('airFlow', 'Air Flow must be specified')
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body('rpm', 'Rpm name must be specified')
+  body('noiseLevel', 'Noise Level must be specified')
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body('airFlow', 'airFlow name must be specified')
-    .trim()
-    .isLength({ min: 1 })
-    .escape(),
-  body('noiseLevel', 'noiseLevel name must be specified')
-    .trim()
-    .isLength({ min: 1 })
-    .escape(),
-  body('LED', 'LED name must be specified')
-    .trim()
-    .isLength({ min: 1 })
-    .escape(),
-  body('dimensions', 'dimensions name must be specified')
+  body('LED', 'LED must be specified').trim().isLength({ min: 1 }).escape(),
+  body('dimensions', 'Dimensions must be specified')
     .trim()
     .isLength({ min: 1 })
     .escape(),
@@ -80,18 +68,19 @@ exports.fan_create_post = [
 
     if (!errors.isEmpty()) {
       res.render('fan_form', {
-        title: 'Create fan',
+        title: 'Create Fan',
         fanItem: req.body,
         errors: errors.array(),
       });
       return;
     }
+
     const newFan = new Fan({
       brand: req.body.brand,
       model: req.body.model,
       type: req.body.type,
       series: req.body.series,
-      fanCounts: req.body,
+      fanCounts: req.body.fanCounts,
       rpm: req.body.rpm,
       airFlow: req.body.airFlow,
       noiseLevel: req.body.noiseLevel,
@@ -99,6 +88,7 @@ exports.fan_create_post = [
       dimensions: req.body.dimensions,
       dateFirstAvailable: req.body.dateFirstAvailable,
     });
+
     await newFan.save();
     res.redirect(`/inventory-app/fan/${newFan._id}`);
   }),

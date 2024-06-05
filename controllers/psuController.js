@@ -34,9 +34,60 @@ exports.psu_create_get = asyncHandler(async (req, res, next) => {
 });
 
 // Handle psu create on POST.
-exports.psu_create_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: psu create POST');
-});
+// Handle psu create on POST.
+exports.psu_create_post = [
+  // Validate and sanitize fields
+  body('brand', 'Brand name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('model', 'Model name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('type', 'Type must be specified').trim().isLength({ min: 1 }).escape(),
+  body('series', 'Series name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('color', 'Color name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('maxPower', 'maxPower name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('dateFirstAvailable', 'Invalid date')
+    .optional({ checkFalsy: true })
+    .isISO8601()
+    .toDate(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      res.render('psu_form', {
+        title: 'Create psu',
+        psuItem: req.body,
+        errors: errors.array(),
+      });
+      return;
+    }
+
+    const newPSU = new PSU({
+      brand: req.body.brand,
+      model: req.body.model,
+      type: req.body.type,
+      series: req.body.series,
+      color: req.body.color,
+      maxPower: req.body.maxPower,
+      dateFirstAvailable: req.body.dateFirstAvailable,
+    });
+    await newPSU.save();
+    res.redirect(`/inventory-app/psu/${newPSU._id}`);
+  }),
+];
 
 // Display psu delete form on GET.
 exports.psu_delete_get = asyncHandler(async (req, res, next) => {

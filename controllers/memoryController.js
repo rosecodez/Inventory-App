@@ -34,9 +34,56 @@ exports.memory_create_get = asyncHandler(async (req, res, next) => {
 });
 
 // Handle memory create on POST.
-exports.memory_create_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: memory create POST');
-});
+exports.memory_create_post = [
+  // Validate and sanitize fields
+  body('brand', 'Brand name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('type', 'Type name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('series', 'Series must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('model', 'Model must be specified').trim().isLength({ min: 1 }).escape(),
+  body('capacity', 'Capacity must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('speed', 'Speed must be specified').trim().isLength({ min: 1 }).escape(),
+  body('dateFirstAvailable', 'Invalid date')
+    .optional({ checkFalsy: true })
+    .isISO8601()
+    .toDate(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      res.render('memory_form', {
+        title: 'Create memory',
+        memoryItem: req.body,
+        errors: errors.array(),
+      });
+      return;
+    }
+
+    const newMemory = new Memory({
+      brand: req.body.brand,
+      type: req.body.type,
+      series: req.body.series,
+      model: req.body.model,
+      capacity: req.body.capacity,
+      speed: req.body.speed,
+      dateFirstAvailable: req.body.dateFirstAvailable,
+    });
+    await newMemory.save();
+    res.redirect(`/inventory-app/memory/${newMemory._id}`);
+  }),
+];
 
 // Display memory delete form on GET.
 exports.memory_delete_get = asyncHandler(async (req, res, next) => {

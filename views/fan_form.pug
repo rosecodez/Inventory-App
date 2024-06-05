@@ -6,43 +6,47 @@ block content
   form(method='POST')
     div.form-group
       label(for='brand') Brand:
-      input#brand.form-control(type='text', placeholder='Brand' name='brand' required value=(undefined === caseItem ? '' : caseItem.brand))
+      input#brand.form-control(type='text', placeholder='Brand', name='brand', required, value=(fanItem && fanItem.brand) ? fanItem.brand : '')
+
+    div.form-group
+      label(for='model') Model:
+      input#model.form-control(type='text', placeholder='Model', name='model', required, value=(fanItem && fanItem.model) ? fanItem.model : '')
 
     div.form-group
       label(for='type') Type:
-      input#type.form-control(type='text', placeholder='Type' name='type' required value=(undefined === caseItem ? '' : caseItem.type))
+      input#type.form-control(type='text', placeholder='Type', name='type', required, value=(fanItem && fanItem.type) ? fanItem.type : '')
 
     div.form-group
-      label(for='fanCounts') fanCounts:
-      input#fanCounts.form-control(fanCounts='text', placeholder='fanCounts' name='fanCounts' required value=(undefined === caseItem ? '' : caseItem.fanCounts))
+      label(for='series') Series:
+      input#series.form-control(type='text', placeholder='Series', name='series', required, value=(fanItem && fanItem.series) ? fanItem.series : '')
 
     div.form-group
-      label(for='fanCounts') fanCounts:
-      input#fanCounts.form-control(type='text', placeholder='fanCounts' name='fanCounts' required value=(undefined === caseItem ? '' : caseItem.fanCounts))
+      label(for='fanCounts') Fan Counts:
+      input#fanCounts.form-control(type='text', placeholder='Fan Counts', name='fanCounts', required, value=(fanItem && fanItem.fanCounts) ? fanItem.fanCounts : '')
 
     div.form-group
-      label(for='rpm') rpm:
-      input#rpm.form-control(type='text', placeholder='rpm' name='rpm' required value=(undefined === caseItem ? '' : caseItem.rpm))
+      label(for='rpm') RPM:
+      input#rpm.form-control(type='text', placeholder='RPM', name='rpm', required, value=(fanItem && fanItem.rpm) ? fanItem.rpm : '')
 
     div.form-group
-      label(for='airFlow') airFlow:
-      input#airFlow.form-control(type='text', placeholder='airFlow' name='airFlow' required value=(undefined === caseItem ? '' : caseItem.airFlow))
-    
+      label(for='airFlow') Air Flow:
+      input#airFlow.form-control(type='text', placeholder='Air Flow', name='airFlow', required, value=(fanItem && fanItem.airFlow) ? fanItem.airFlow : '')
+
     div.form-group
-      label(for='noiseLevel') noiseLevel:
-      input#noiseLevel.form-control(type='text', placeholder='noiseLevel' name='noiseLevel' required value=(undefined === caseItem ? '' : caseItem.noiseLevel))
-    
+      label(for='noiseLevel') Noise Level:
+      input#noiseLevel.form-control(type='text', placeholder='Noise Level', name='noiseLevel', required, value=(fanItem && fanItem.noiseLevel) ? fanItem.noiseLevel : '')
+
     div.form-group
       label(for='LED') LED:
-      input#LED.form-control(type='text', placeholder='LED' name='LED' required value=(undefined === caseItem ? '' : caseItem.LED))
-    
+      input#LED.form-control(type='text', placeholder='LED', name='LED', required, value=(fanItem && fanItem.LED) ? fanItem.LED : '')
+
     div.form-group
-      label(for='dimensions') dimensions:
-      input#dimensions.form-control(type='text', placeholder='dimensions' name='dimensions' required value=(undefined === caseItem ? '' : caseItem.dimensions))
+      label(for='dimensions') Dimensions:
+      input#dimensions.form-control(type='text', placeholder='Dimensions', name='dimensions', required, value=(fanItem && fanItem.dimensions) ? fanItem.dimensions : '')
 
     div.form-group
       label(for='dateFirstAvailable') Date First Available:
-      input#dateFirstAvailable.form-control(type='date' placeholder='YYYY-MM-DD' name='dateFirstAvailable' value=(undefined === caseItem ? '' : caseItem.dateFirstAvailable ? caseItem.dateFirstAvailable.toISOString().substr(0, 10) : ''))
+      input#dateFirstAvailable.form-control(type='date', placeholder='YYYY-MM-DD', name='dateFirstAvailable', value=(fanItem && fanItem.dateFirstAvailable) ? fanItem.dateFirstAvailable.toISOString().substr(0, 10) : '')
 
     button.btn.btn-primary(type='submit') Submit
 
