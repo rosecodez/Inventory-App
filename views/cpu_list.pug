@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+  a.btn.btn-primary(href="/inventory-app/cpu/create", role="button") Create New CPU
   if cpuList && cpuList.length
     ul
       each cpu in cpuList

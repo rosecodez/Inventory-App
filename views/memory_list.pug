@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+  a.btn.btn-primary(href="/inventory-app/memory/create", role="button") Create new memory
   if memoryList && memoryList.length
     ul
       each memory in memoryList

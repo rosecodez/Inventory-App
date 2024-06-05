@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+  a.btn.btn-primary(href="/inventory-app/fan/create", role="button") Create new fan
   if fanList && fanList.length
     ul
       each fan in fanList

@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+  a.btn.btn-primary(href="/inventory-app/motherboard/create", role="button") Create new motherboard
   if motherboardList && motherboardList.length
     ul
       each motherboard in motherboardList

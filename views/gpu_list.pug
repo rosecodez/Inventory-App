@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+  a.btn.btn-primary(href="/inventory-app/gpu/create", role="button") Create new graphics card
   if gpuList && gpuList.length
     ul
       each gpu in gpuList

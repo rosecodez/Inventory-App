@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+  a.btn.btn-primary(href="/inventory-app/psu/create", role="button") Create new psu
   if psuList && psuList.length
     ul
       each psu in psuList

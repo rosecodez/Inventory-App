@@ -11,13 +11,11 @@ html(lang='en')
   body
     div(class='container-fluid')
       nav(class="navbar navbar-expand-lg navbar-light bg-light")
-        a(class="navbar-brand" href="#") Inventory App
+        a(class="navbar-brand" href='/inventory-app') Inventory App
         button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
           span(class="navbar-toggler-icon")
         div(class="collapse navbar-collapse" id="navbarNav")
           ul(class="navbar-nav")
-            li(class="nav-item")
-              a(href='/inventory-app' class="nav-link active" aria-current="page") All items
             li(class="nav-item")
               a(href='/inventory-app/cases' class="nav-link") Cases
             li(class="nav-item")
@@ -34,8 +32,6 @@ html(lang='en')
               a(href='/inventory-app/psus' class="nav-link") Power supplies
             li(class="nav-item")
               hr
-            li(class="nav-item")
-              a(href='/inventory-app/create' class="nav-link") Add new item
 
       div(class='row')
         div(class='col-sm-10')

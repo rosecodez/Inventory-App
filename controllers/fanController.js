@@ -27,13 +27,82 @@ exports.fan_detail = asyncHandler(async (req, res, next) => {
 
 // Display fan create form on GET.
 exports.fan_create_get = asyncHandler(async (req, res, next) => {
-  res.render('FAN_form', { title: 'Create Fan' });
+  res.render('fan_form', { title: 'Create Fan' });
 });
 
 // Handle fan create on POST.
-exports.fan_create_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: fan create POST');
-});
+exports.fan_create_post = [
+  // Validate and sanitize fields
+  body('brand', 'Brand name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('model', 'Model name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('type', 'Type must be specified').trim().isLength({ min: 1 }).escape(),
+  body('series', 'Series name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('fanCounts', 'Fan counts name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('rpm', 'Rpm name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('airFlow', 'airFlow name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('noiseLevel', 'noiseLevel name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('LED', 'LED name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('dimensions', 'dimensions name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('dateFirstAvailable', 'Invalid date')
+    .optional({ checkFalsy: true })
+    .isISO8601()
+    .toDate(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      res.render('fan_form', {
+        title: 'Create fan',
+        fanItem: req.body,
+        errors: errors.array(),
+      });
+      return;
+    }
+    const newFan = new Fan({
+      brand: req.body.brand,
+      model: req.body.model,
+      type: req.body.type,
+      series: req.body.series,
+      fanCounts: req.body,
+      rpm: req.body.rpm,
+      airFlow: req.body.airFlow,
+      noiseLevel: req.body.noiseLevel,
+      LED: req.body.LED,
+      dimensions: req.body.dimensions,
+      dateFirstAvailable: req.body.dateFirstAvailable,
+    });
+    await newFan.save();
+    res.redirect(`/inventory-app/fan/${newFan._id}`);
+  }),
+];
 
 // Display fan delete form on GET.
 exports.fan_delete_get = asyncHandler(async (req, res, next) => {

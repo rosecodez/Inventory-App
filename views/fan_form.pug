@@ -1,0 +1,52 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method='POST')
+    div.form-group
+      label(for='brand') Brand:
+      input#brand.form-control(type='text', placeholder='Brand' name='brand' required value=(undefined === caseItem ? '' : caseItem.brand))
+
+    div.form-group
+      label(for='type') Type:
+      input#type.form-control(type='text', placeholder='Type' name='type' required value=(undefined === caseItem ? '' : caseItem.type))
+
+    div.form-group
+      label(for='fanCounts') fanCounts:
+      input#fanCounts.form-control(fanCounts='text', placeholder='fanCounts' name='fanCounts' required value=(undefined === caseItem ? '' : caseItem.fanCounts))
+
+    div.form-group
+      label(for='fanCounts') fanCounts:
+      input#fanCounts.form-control(type='text', placeholder='fanCounts' name='fanCounts' required value=(undefined === caseItem ? '' : caseItem.fanCounts))
+
+    div.form-group
+      label(for='rpm') rpm:
+      input#rpm.form-control(type='text', placeholder='rpm' name='rpm' required value=(undefined === caseItem ? '' : caseItem.rpm))
+
+    div.form-group
+      label(for='airFlow') airFlow:
+      input#airFlow.form-control(type='text', placeholder='airFlow' name='airFlow' required value=(undefined === caseItem ? '' : caseItem.airFlow))
+    
+    div.form-group
+      label(for='noiseLevel') noiseLevel:
+      input#noiseLevel.form-control(type='text', placeholder='noiseLevel' name='noiseLevel' required value=(undefined === caseItem ? '' : caseItem.noiseLevel))
+    
+    div.form-group
+      label(for='LED') LED:
+      input#LED.form-control(type='text', placeholder='LED' name='LED' required value=(undefined === caseItem ? '' : caseItem.LED))
+    
+    div.form-group
+      label(for='dimensions') dimensions:
+      input#dimensions.form-control(type='text', placeholder='dimensions' name='dimensions' required value=(undefined === caseItem ? '' : caseItem.dimensions))
+
+    div.form-group
+      label(for='dateFirstAvailable') Date First Available:
+      input#dateFirstAvailable.form-control(type='date' placeholder='YYYY-MM-DD' name='dateFirstAvailable' value=(undefined === caseItem ? '' : caseItem.dateFirstAvailable ? caseItem.dateFirstAvailable.toISOString().substr(0, 10) : ''))
+
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors && errors.length > 0
+    ul.text-danger
+      each error in errors
+        li= error.msg
