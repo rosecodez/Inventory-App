@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h2 Delete psu
+
+  hr
+  p Are you sure you want to delete this psu?
+  form(method='POST', action=psuItem.url + '/delete')
+    input(type='hidden', name='psuItemId', value=psuItem._id)
+    button.btn.btn-primary(type='submit') Yes

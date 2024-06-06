@@ -107,7 +107,6 @@ exports.memory_delete_post = asyncHandler(async (req, res, next) => {
 
   await Memory.findByIdAndDelete(memoryItemId);
 
-  // Redirect to memory list page after deletion
   res.redirect('/inventory-app/memories');
 });
 

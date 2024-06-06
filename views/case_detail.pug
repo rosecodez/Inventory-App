@@ -17,8 +17,7 @@ block content
     | Date First Available: #{caseItem.dateFirstAvailable_formatted}
     
     hr
-
   p
-    a(href=`${caseItem.url}/delete`) Delete case
+    a(href=caseItem.url+'/delete') Delete case
   p
-    a(href=`${caseItem.url}/update`) Update case
+    a(href=caseItem.url+'/update') Update case

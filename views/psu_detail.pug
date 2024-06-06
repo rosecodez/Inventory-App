@@ -17,3 +17,9 @@ block content
     | Max Power: #{psuItem.maxPower}
     br
     | Date First Available: #{psuItem.dateFirstAvailable_formatted}
+    hr
+
+  p
+    a(href=`${psuItem.url}/delete`) Delete psu
+  p
+    a(href=`${psuItem.url}/update`) Update psu

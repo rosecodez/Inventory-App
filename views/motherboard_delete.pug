@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h2 Delete motherboard
+
+  hr
+  p Are you sure you want to delete this motherboard?
+  form(method='POST', action=motherboardItem.url + '/delete')
+    input(type='hidden', name='motherboardItemId', value=motherboardItem._id)
+    button.btn.btn-primary(type='submit') Yes

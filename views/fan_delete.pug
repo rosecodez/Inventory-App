@@ -7,4 +7,4 @@ block content
   p Are you sure you want to delete this fan?
   form(method='POST', action=fanItem.url + '/delete')
     input(type='hidden', name='fanItemId', value=fanItem._id)
-    button(type='submit') Yes
+    button.btn.btn-primary(type='submit') Yes
