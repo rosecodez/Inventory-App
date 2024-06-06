@@ -27,3 +27,10 @@ block content
     | Dimensions: #{fanItem.dimensions}
     br
     | Date First Available: #{fanItem.dateFirstAvailable_formatted}
+
+    hr
+
+  p
+    a(href=`${fanItem.url}/delete`) Delete fan
+  p
+    a(href=`${fanItem.url}/update`) Update fan

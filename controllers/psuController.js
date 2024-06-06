@@ -91,12 +91,24 @@ exports.psu_create_post = [
 
 // Display psu delete form on GET.
 exports.psu_delete_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: psu delete GET');
+  const psuItem = await PSU.findById(req.params.id);
+
+  if (!psuItem) {
+    const err = new Error('psu not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('psu_delete', {
+    title: 'Power supply delete',
+    psuItem: psuItem,
+  });
 });
 
 // Handle psu delete on POST.
 exports.psu_delete_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: psu delete POST');
+  await PSU.findByIdAndDelete(req.params.id);
+  res.redirect('/inventory-app/psus');
 });
 
 // Display psu update form on GET.

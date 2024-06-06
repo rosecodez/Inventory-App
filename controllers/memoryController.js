@@ -87,12 +87,28 @@ exports.memory_create_post = [
 
 // Display memory delete form on GET.
 exports.memory_delete_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: memory delete GET');
+  const memoryItem = await Memory.findById(req.params.id);
+
+  if (!memoryItem) {
+    const err = new Error('memory not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('memory_delete', {
+    title: 'Memory delete',
+    memoryItem: memoryItem,
+  });
 });
 
 // Handle memory delete on POST.
 exports.memory_delete_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: memory delete POST');
+  const memoryItemId = req.params.id;
+
+  await Memory.findByIdAndDelete(memoryItemId);
+
+  // Redirect to memory list page after deletion
+  res.redirect('/inventory-app/memories');
 });
 
 // Display memory update form on GET.

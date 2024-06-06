@@ -17,3 +17,10 @@ block content
     | Speed: #{memoryItem.speed}
     br
     | Date First Available: #{memoryItem.dateFirstAvailable_formatted}
+
+    hr
+  
+  p
+    a(href=`${memoryItem.url}/delete`) Delete memory
+  p
+    a(href=`${memoryItem.url}/update`) Update memory

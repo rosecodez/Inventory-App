@@ -87,12 +87,24 @@ exports.cpu_create_post = [
 
 // Display CPU delete form on GET.
 exports.cpu_delete_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: cpu delete GET');
+  const cpuItem = await CPU.findById(req.params.id);
+
+  if (!cpuItem) {
+    const err = new Error('CPU not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('cpu_delete', {
+    title: 'Processor delete',
+    cpuItem: cpuItem,
+  });
 });
 
 // Handle CPU delete on POST.
 exports.cpu_delete_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: cpu delete POST');
+  await CPU.findByIdAndDelete(req.params.id);
+  res.redirect('/inventory-app/cpus');
 });
 
 // Display CPU update form on GET.

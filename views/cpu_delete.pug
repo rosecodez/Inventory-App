@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h2 Delete Processor
+
+  hr
+  p Are you sure you want to delete this CPU?
+
+  form(method='POST', action=`/inventory-app/cpu/${cpuItem._id}/delete`)
+    input(type='hidden', name='cpuItemId', value=cpuItem._id)
+    button(type='submit') Yes

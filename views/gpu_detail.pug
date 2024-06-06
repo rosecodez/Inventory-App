@@ -15,3 +15,10 @@ block content
     | GPU: #{gpuItem.GPU}
     br
     | Date First Available: #{gpuItem.dateFirstAvailable_formatted}
+
+    hr
+  
+  p
+    a(href=`${gpuItem.url}/delete`) Delete gpu
+  p
+    a(href=`${gpuItem.url}/update`) Update gpu

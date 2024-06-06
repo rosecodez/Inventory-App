@@ -96,12 +96,24 @@ exports.fan_create_post = [
 
 // Display fan delete form on GET.
 exports.fan_delete_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: fan delete GET');
+  const fanItem = await Fan.findById(req.params.id);
+
+  if (!fanItem) {
+    const err = new Error('fan not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('fan_delete', {
+    title: 'Fan delete',
+    fanItem: fanItem,
+  });
 });
 
 // Handle fan delete on POST.
 exports.fan_delete_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: fan delete POST');
+  await Fan.findByIdAndDelete(req.params.id);
+  res.redirect('/inventory-app/fans');
 });
 
 // Display fan update form on GET.

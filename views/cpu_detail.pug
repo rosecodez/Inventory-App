@@ -15,3 +15,9 @@ block content
     | Socket: #{cpuItem.socket}
     br
     | Date First Available: #{cpuItem.dateFirstAvailable_formatted}
+    hr
+
+  p
+    a(href=`${cpuItem.id}/delete`) Delete cpu
+  p
+    a(href=`${cpuItem.id}/update`) Update cpu

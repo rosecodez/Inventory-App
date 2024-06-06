@@ -89,12 +89,24 @@ exports.gpu_create_post = [
 
 // Display gpu delete form on GET.
 exports.gpu_delete_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: gpu delete GET');
+  const gpuItem = await GPU.findById(req.params.id);
+
+  if (!gpuItem) {
+    const err = new Error('gpu not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('gpu_delete', {
+    title: 'Graphics card delete',
+    gpuItem: gpuItem,
+  });
 });
 
 // Handle gpu delete on POST.
 exports.gpu_delete_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: gpu delete POST');
+  await GPU.findByIdAndDelete(req.params.id);
+  res.redirect('/inventory-app/gpus');
 });
 
 // Display gpu update form on GET.

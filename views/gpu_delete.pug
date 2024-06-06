@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h2 Delete gpu
+
+  hr
+  p Are you sure you want to delete this gpu?
+  form(method='POST', action=gpuItem.url + '/delete')
+    input(type='hidden', name='gpuItemId', value=gpuItem._id)
+    button(type='submit') Yes

@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h2 Delete memory
+
+  hr
+  p Are you sure you want to delete this memory?
+  form(method='POST', action=memoryItem.url + '/delete')
+    input(type='hidden', name='memoryItemId', value=memoryItem._id)
+    button(type='submit') Yes

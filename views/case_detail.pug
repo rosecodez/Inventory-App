@@ -15,3 +15,10 @@ block content
     | Type: #{caseItem.type}
     br
     | Date First Available: #{caseItem.dateFirstAvailable_formatted}
+    
+    hr
+
+  p
+    a(href=`${caseItem.url}/delete`) Delete case
+  p
+    a(href=`${caseItem.url}/update`) Update case

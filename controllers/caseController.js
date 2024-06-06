@@ -79,16 +79,28 @@ exports.case_create_post = [
     res.redirect(`/inventory-app/case/${newCase._id}`);
   }),
 ];
+
 // Display case delete form on GET
 exports.case_delete_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Case delete GET');
+  const caseItem = await Case.findById(req.params.id);
+
+  if (!caseItem) {
+    const err = new Error('Case not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('case_delete', {
+    title: 'Case delete',
+    caseItem: caseItem,
+  });
 });
 
 // Handle case delete on POST
 exports.case_delete_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Case delete POST');
+  await Case.findByIdAndDelete(req.params.id);
+  res.redirect('/inventory-app/cases');
 });
-
 // Display case update form on GET
 exports.case_update_get = asyncHandler(async (req, res, next) => {
   res.send('NOT IMPLEMENTED: Case update GET');

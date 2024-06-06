@@ -88,12 +88,24 @@ exports.motherboard_create_post = [
 
 // Display motherboard delete form on GET.
 exports.motherboard_delete_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: motherboard delete GET');
+  const motherboardItem = await Motherboard.findById(req.params.id);
+
+  if (!motherboardItem) {
+    const err = new Error('motherboard not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('motherboard_delete', {
+    title: 'Motherboard delete',
+    motherboardItem: motherboardItem,
+  });
 });
 
 // Handle motherboard delete on POST.
 exports.motherboard_delete_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: motherboard delete POST');
+  await Motherboard.findByIdAndDelete(req.params.id);
+  res.redirect('/inventory-app/motherboards');
 });
 
 // Display motherboard update form on GET.
