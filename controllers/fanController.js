@@ -34,12 +34,12 @@ exports.fan_create_get = asyncHandler(async (req, res, next) => {
 exports.fan_create_post = [
   // Validate and sanitize fields
   body('brand', 'Brand must be specified').trim().isLength({ min: 1 }).escape(),
-  body('model', 'Model must be specified').trim().isLength({ min: 1 }).escape(), // Add model validation
+  body('model', 'Model must be specified').trim().isLength({ min: 1 }).escape(),
   body('type', 'Type must be specified').trim().isLength({ min: 1 }).escape(),
   body('series', 'Series must be specified')
     .trim()
     .isLength({ min: 1 })
-    .escape(), // Add series validation
+    .escape(),
   body('fanCounts', 'Fan counts must be specified')
     .trim()
     .isLength({ min: 1 })
@@ -118,10 +118,78 @@ exports.fan_delete_post = asyncHandler(async (req, res, next) => {
 
 // Display fan update form on GET.
 exports.fan_update_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: fan update GET');
+  const fanItem = await Fan.findById(req.params.id);
+
+  if (!fanItem) {
+    const err = new Error('fan not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('fan_form', {
+    title: 'Update fan',
+    fanItem: fanItem,
+  });
 });
 
 // Handle fan update on POST.
-exports.fan_update_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: fan update POST');
-});
+exports.fan_update_post = [
+  // Validate and sanitize fields
+  body('brand', 'Brand must be specified').trim().isLength({ min: 1 }).escape(),
+  body('model', 'Model must be specified').trim().isLength({ min: 1 }).escape(),
+  body('type', 'Type must be specified').trim().isLength({ min: 1 }).escape(),
+  body('series', 'Series must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('fanCounts', 'Fan counts must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('rpm', 'RPM must be specified').trim().isLength({ min: 1 }).escape(),
+  body('airFlow', 'Air Flow must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('noiseLevel', 'Noise Level must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('LED', 'LED must be specified').trim().isLength({ min: 1 }).escape(),
+  body('dimensions', 'Dimensions must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('dateFirstAvailable', 'Invalid date')
+    .optional({ checkFalsy: true })
+    .isISO8601()
+    .toDate(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    const newFan = new Fan({
+      _id: req.params.id,
+      brand: req.body.brand,
+      model: req.body.model,
+      type: req.body.type,
+      series: req.body.series,
+      fanCounts: req.body.fanCounts,
+      rpm: req.body.rpm,
+      airFlow: req.body.airFlow,
+      noiseLevel: req.body.noiseLevel,
+      LED: req.body.LED,
+      dimensions: req.body.dimensions,
+      dateFirstAvailable: req.body.dateFirstAvailable,
+    });
+    if (!errors.isEmpty()) {
+      res.render('fan_form', {
+        title: 'Create Fan',
+        fanItem: req.body,
+        errors: errors.array(),
+      });
+    } else {
+      await Fan.findByIdAndUpdate(req.params.id, newFan);
+      res.redirect(`/inventory-app/fan/${newFan._id}`);
+    }
+  }),
+];

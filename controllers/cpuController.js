@@ -109,10 +109,81 @@ exports.cpu_delete_post = asyncHandler(async (req, res, next) => {
 
 // Display CPU update form on GET.
 exports.cpu_update_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: cpu update GET');
+  const cpuItem = await CPU.findById(req.params.id);
+
+  if (!cpuItem) {
+    const err = new Error('CPU not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('cpu_form', {
+    title: 'Update processor',
+    cpuItem: cpuItem,
+  });
 });
 
 // Handle CPU update on POST.
-exports.cpu_update_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: cpu update POST');
-});
+exports.cpu_update_post = [
+  // Validate and sanitize fields
+  body('brand', 'Brand name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('type', 'Type name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('series', 'Series must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('name', 'Name must be specified').trim().isLength({ min: 1 }).escape(),
+  body('model', 'Model name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('socket', 'Socket name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('dateFirstAvailable', 'Invalid date')
+    .optional({ checkFalsy: true })
+    .isISO8601()
+    .toDate(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    const cpuItem = await CPU.findById(req.params.id);
+
+    if (!cpuItem) {
+      const err = new Error('CPU not found');
+      err.status = 404;
+      return next(err);
+    }
+
+    const newCPU = {
+      _id: req.params.id,
+      brand: req.body.brand,
+      type: req.body.type,
+      series: req.body.series,
+      name: req.body.name,
+      model: req.body.model,
+      socket: req.body.socket,
+      dateFirstAvailable: req.body.dateFirstAvailable,
+    };
+
+    if (!errors.isEmpty()) {
+      res.render('cpu_form', {
+        title: 'Update processor',
+        cpuItem: newCPU,
+        errors: errors.array(),
+      });
+    } else {
+      await CPU.findByIdAndUpdate(req.params.id, newCPU);
+
+      res.redirect(`/inventory-app/cpu/${req.params.id}`);
+    }
+  }),
+];

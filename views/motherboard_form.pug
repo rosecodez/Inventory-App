@@ -26,7 +26,7 @@ block content
     
     div.form-group
       label(for='dateFirstAvailable') Date First Available:
-      input#dateFirstAvailable.form-control(type='date' placeholder='YYYY-MM-DD' name='dateFirstAvailable' value=(undefined === motherboardItem ? '' : motherboardItem.dateFirstAvailable ? memoryItem.dateFirstAvailable.toISOString().substr(0, 10) : ''))
+      input#dateFirstAvailable.form-control(type='date' placeholder='YYYY-MM-DD' name='dateFirstAvailable' value=(undefined === motherboardItem ? '' : motherboardItem.dateFirstAvailable ? motherboardItem.dateFirstAvailable.toISOString().substr(0, 10) : ''))
 
     button.btn.btn-primary(type='submit') Submit
 

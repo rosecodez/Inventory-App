@@ -110,10 +110,70 @@ exports.motherboard_delete_post = asyncHandler(async (req, res, next) => {
 
 // Display motherboard update form on GET.
 exports.motherboard_update_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: motherboard update GET');
+  const motherboardItem = await Motherboard.findById(req.params.id);
+
+  if (!motherboardItem) {
+    const err = new Error('motherboard not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('motherboard_form', {
+    title: 'Update motherboard',
+    motherboardItem: motherboardItem,
+  });
 });
 
 // Handle motherboard update on POST.
-exports.motherboard_update_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: motherboard update POST');
-});
+exports.motherboard_update_post = [
+  // Validate and sanitize fields
+  body('brand', 'Brand name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('model', 'Model name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('CPUSocketType', 'CPUSocketType must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('CPUType', 'CPUType name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('chipset', 'chipset name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('dateFirstAvailable', 'Invalid date')
+    .optional({ checkFalsy: true })
+    .isISO8601()
+    .toDate(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    const motherboardItem = new Motherboard({
+      _id: req.params.id,
+      brand: req.body.brand,
+      model: req.body.model,
+      CPUSocketType: req.body.CPUSocketType,
+      CPUType: req.body.CPUType,
+      chipset: req.body.chipset,
+      dateFirstAvailable: req.body.dateFirstAvailable,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render('motherboard_form', {
+        title: 'Create motherboard',
+        motherboardItem: req.body,
+        errors: errors.array(),
+      });
+    } else {
+      await Motherboard.findByIdAndUpdate(req.params.id, motherboardItem);
+      res.redirect(`/inventory-app/motherboard/${motherboardItem._id}`);
+    }
+  }),
+];

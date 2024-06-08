@@ -6,27 +6,31 @@ block content
   form(method='POST')
     div.form-group
       label(for='brand') Brand:
-      input#brand.form-control(type='text', placeholder='Brand' name='brand' required value=(undefined === memoryItem ? '' : memoryItem.brand))
+      input#brand.form-control(type='text', placeholder='Brand', name='brand', required, value=(undefined === memoryItem ? '' : memoryItem.brand))
+
+    div.form-group
+      label(for='type') Type:
+      input#type.form-control(type='text', placeholder='Type', name='type', required, value=(undefined === memoryItem ? '' : memoryItem.type))
+
+    div.form-group
+      label(for='series') Series:
+      input#series.form-control(type='text', placeholder='Series', name='series', required, value=(undefined === memoryItem ? '' : memoryItem.series))
 
     div.form-group
       label(for='model') Model:
-      input#model.form-control(model='text', placeholder='Model' name='model' required value=(undefined === memoryItem ? '' : memoryItem.model))
+      input#model.form-control(type='text', placeholder='Model', name='model', required, value=(undefined === memoryItem ? '' : memoryItem.model))
 
     div.form-group
-      label(for='CPUSocketType') CPUSocketType:
-      input#CPUSocketType.form-control(type='text', placeholder='CPUSocketType' name='CPUSocketType' required value=(undefined === memoryItem ? '' : memoryItem.CPUSocketType))
+      label(for='capacity') Capacity:
+      input#capacity.form-control(type='text', placeholder='Capacity', name='capacity', required, value=(undefined === memoryItem ? '' : memoryItem.capacity))
 
     div.form-group
-      label(for='CPUType') CPUType:
-      input#CPUType.form-control(type='text', placeholder='CPUType' name='CPUType' required value=(undefined === memoryItem ? '' : memoryItem.CPUType))
-
-    div.form-group
-      label(for='chipset') Chipset:
-      input#chipset.form-control(type='text', placeholder='Chipset' name='chipset' required value=(undefined === memoryItem ? '' : memoryItem.chipset))
+      label(for='speed') Speed:
+      input#speed.form-control(type='text', placeholder='Speed', name='speed', required, value=(undefined === memoryItem ? '' : memoryItem.speed))
     
     div.form-group
       label(for='dateFirstAvailable') Date First Available:
-      input#dateFirstAvailable.form-control(type='date' placeholder='YYYY-MM-DD' name='dateFirstAvailable' value=(undefined === memoryItem ? '' : memoryItem.dateFirstAvailable ? memoryItem.dateFirstAvailable.toISOString().substr(0, 10) : ''))
+      input#dateFirstAvailable.form-control(type='date', placeholder='YYYY-MM-DD', name='dateFirstAvailable', value=(undefined === memoryItem ? '' : memoryItem.dateFirstAvailable ? memoryItem.dateFirstAvailable.toISOString().substr(0, 10) : ''))
 
     button.btn.btn-primary(type='submit') Submit
 

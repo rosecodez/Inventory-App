@@ -66,14 +66,13 @@ exports.case_create_post = [
       return;
     }
 
-    const { brand, model, type, series, color, dateFirstAvailable } = req.body;
     const newCase = new Case({
-      brand,
-      model,
-      type,
-      series,
-      color,
-      dateFirstAvailable,
+      brand: req.body.brand,
+      model: req.body.model,
+      type: req.body.type,
+      series: req.body.series,
+      color: req.body.color,
+      dateFirstAvailable: req.body.dateFirstAvailable,
     });
     await newCase.save();
     res.redirect(`/inventory-app/case/${newCase._id}`);
@@ -103,10 +102,67 @@ exports.case_delete_post = asyncHandler(async (req, res, next) => {
 });
 // Display case update form on GET
 exports.case_update_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Case update GET');
+  const caseItem = await Case.findById(req.params.id);
+
+  if (!caseItem) {
+    const err = new Error('Case not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('case_form', {
+    title: 'Update case',
+    caseItem: caseItem,
+  });
 });
 
 // Handle case update on POST
-exports.case_update_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Case update POST');
-});
+exports.case_update_post = [
+  // Validate and sanitize fields
+  body('brand', 'Brand name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('model', 'Model name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('type', 'Type must be specified').trim().isLength({ min: 1 }).escape(),
+  body('series', 'Series name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('color', 'Color name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('dateFirstAvailable', 'Invalid date')
+    .optional({ checkFalsy: true })
+    .isISO8601()
+    .toDate(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    const newCase = new Case({
+      _id: req.params.id,
+      brand: req.body.brand,
+      model: req.body.model,
+      type: req.body.type,
+      series: req.body.series,
+      color: req.body.color,
+      dateFirstAvailable: req.body.dateFirstAvailable,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render('case_form', {
+        title: 'Update case',
+        caseItem: req.body,
+        errors: errors.array(),
+      });
+    } else {
+      await Case.findByIdAndUpdate(req.params.id, newCase);
+      res.redirect(newCase.url);
+    }
+  }),
+];

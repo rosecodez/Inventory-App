@@ -6,31 +6,31 @@ block content
   form(method='POST')
     div.form-group
       label(for='brand') Brand:
-      input#brand.form-control(type='text', placeholder='Brand' name='brand' required value=(undefined === memoryItem ? '' : memoryItem.brand))
+      input#brand.form-control(type='text', placeholder='Brand' name='brand' required value=(undefined === psuItem ? '' : psuItem.brand))
 
     div.form-group
       label(for='model') Model:
-      input#model.form-control(model='text', placeholder='Model' name='model' required value=(undefined === memoryItem ? '' : memoryItem.model))
+      input#model.form-control(model='text', placeholder='Model' name='model' required value=(undefined === psuItem ? '' : psuItem.model))
 
     div.form-group
       label(for='type') Type:
-      input#type.form-control(type='text', placeholder='Type' name='type' required value=(undefined === memoryItem ? '' : memoryItem.type))
+      input#type.form-control(type='text', placeholder='Type' name='type' required value=(undefined === psuItem ? '' : psuItem.type))
 
     div.form-group
       label(for='series') Series:
-      input#series.form-control(type='text', placeholder='Series' name='series' required value=(undefined === memoryItem ? '' : memoryItem.series))
+      input#series.form-control(type='text', placeholder='Series' name='series' required value=(undefined === psuItem ? '' : psuItem.series))
 
     div.form-group
       label(for='color') Color:
-      input#color.form-control(type='text', placeholder='Color' name='color' required value=(undefined === memoryItem ? '' : memoryItem.color))
+      input#color.form-control(type='text', placeholder='Color' name='color' required value=(undefined === psuItem ? '' : psuItem.color))
     
     div.form-group
       label(for='maxPower') maxPower:
-      input#maxPower.form-control(type='text', placeholder='maxPower' name='maxPower' required value=(undefined === memoryItem ? '' : memoryItem.maxPower))
+      input#maxPower.form-control(type='text', placeholder='maxPower' name='maxPower' required value=(undefined === psuItem ? '' : psuItem.maxPower))
     
     div.form-group
       label(for='dateFirstAvailable') Date First Available:
-      input#dateFirstAvailable.form-control(type='date' placeholder='YYYY-MM-DD' name='dateFirstAvailable' value=(undefined === memoryItem ? '' : memoryItem.dateFirstAvailable ? memoryItem.dateFirstAvailable.toISOString().substr(0, 10) : ''))
+      input#dateFirstAvailable.form-control(type='date' placeholder='YYYY-MM-DD' name='dateFirstAvailable' value=(undefined === psuItem ? '' : psuItem.dateFirstAvailable ? psuItem.dateFirstAvailable.toISOString().substr(0, 10) : ''))
 
     button.btn.btn-primary(type='submit') Submit
 

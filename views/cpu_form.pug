@@ -6,35 +6,35 @@ block content
   form(method='POST')
     div.form-group
       label(for='brand') Brand:
-      input#brand.form-control(type='text', placeholder='Brand' name='brand' required value=(undefined === caseItem ? '' : caseItem.brand))
+      input#brand.form-control(type='text', placeholder='Brand', name='brand', required, value=(undefined === cpuItem ? '' : cpuItem.brand))
 
     div.form-group
       label(for='type') Type:
-      input#type.form-control(type='text', placeholder='Type' name='type' required value=(undefined === caseItem ? '' : caseItem.type))
+      input#type.form-control(type='text', placeholder='Type', name='type', required, value=(undefined === cpuItem ? '' : cpuItem.type))
 
     div.form-group
       label(for='series') Series:
-      input#series.form-control(series='text', placeholder='series' name='series' required value=(undefined === caseItem ? '' : caseItem.series))
+      input#series.form-control(type='text', placeholder='Series', name='series', required, value=(undefined === cpuItem ? '' : cpuItem.series))
 
     div.form-group
       label(for='name') Name:
-      input#name.form-control(type='text', placeholder='name' name='name' required value=(undefined === caseItem ? '' : caseItem.name))
+      input#name.form-control(type='text', placeholder='Name', name='name', required, value=(undefined === cpuItem ? '' : cpuItem.name))
 
     div.form-group
       label(for='model') Model:
-      input#model.form-control(type='text', placeholder='model' name='model' required value=(undefined === caseItem ? '' : caseItem.model))
+      input#model.form-control(type='text', placeholder='Model', name='model', required, value=(undefined === cpuItem ? '' : cpuItem.model))
 
     div.form-group
       label(for='socket') Socket:
-      input#socket.form-control(type='text', placeholder='socket' name='socket' required value=(undefined === caseItem ? '' : caseItem.socket))
+      input#socket.form-control(type='text', placeholder='Socket', name='socket', required, value=(undefined === cpuItem ? '' : cpuItem.socket))
 
     div.form-group
       label(for='dateFirstAvailable') Date First Available:
-      input#dateFirstAvailable.form-control(type='date' placeholder='YYYY-MM-DD' name='dateFirstAvailable' value=(undefined === caseItem ? '' : caseItem.dateFirstAvailable ? caseItem.dateFirstAvailable.toISOString().substr(0, 10) : ''))
+      input#dateFirstAvailable.form-control(type='date', placeholder='YYYY-MM-DD', name='dateFirstAvailable', value=(undefined === cpuItem ? '' : cpuItem.dateFirstAvailable ? cpuItem.dateFirstAvailable.toISOString().substr(0, 10) : ''))
 
     button.btn.btn-primary(type='submit') Submit
 
-  if errors && errors.length > 0
+  if (errors && errors.length > 0)
     ul.text-danger
       each error in errors
         li= error.msg

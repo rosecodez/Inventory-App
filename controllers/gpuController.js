@@ -111,10 +111,68 @@ exports.gpu_delete_post = asyncHandler(async (req, res, next) => {
 
 // Display gpu update form on GET.
 exports.gpu_update_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: gpu update GET');
+  const gpuItem = await GPU.findById(req.params.id);
+
+  if (!gpuItem) {
+    const err = new Error('gpu not found');
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render('gpu_form', {
+    title: 'Update graphics card',
+    gpuItem: gpuItem,
+  });
 });
 
 // Handle gpu update on POST.
-exports.gpu_update_post = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: gpu update POST');
-});
+exports.gpu_update_post = [
+  // Validate and sanitize fields
+  body('brand', 'Brand name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('model', 'Model name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('gpuInterface', 'gpuInterface must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('series', 'Series name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('GPU', 'Color name must be specified')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body('dateFirstAvailable', 'Invalid date')
+    .optional({ checkFalsy: true })
+    .isISO8601()
+    .toDate(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    const gpuItem = new GPU({
+      _id: req.params.id,
+      brand: req.body.brand,
+      model: req.body.model,
+      gpuInterface: req.body.gpuInterface,
+      series: req.body.series,
+      GPU: req.body.GPU,
+      dateFirstAvailable: req.body.dateFirstAvailable,
+    });
+    if (!errors.isEmpty()) {
+      res.render('gpu_form', {
+        title: 'Update graphics card',
+        gpuItem: req.body,
+        errors: errors.array(),
+      });
+    } else {
+      await GPU.findByIdAndUpdate(req.params.id, gpuItem);
+      res.redirect(`/inventory-app/gpu/${gpuItem._id}`);
+    }
+  }),
+];
