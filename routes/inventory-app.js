@@ -11,8 +11,9 @@ const motherboard_controller = require('../controllers/motherboardController');
 const psu_controller = require('../controllers/psuController');
 
 // GET catalog home page.
-router.get('/', gpu_controller.index);
-
+router.get('/', (req, res) => {
+  res.render('index', { title: 'our pc parts inventory!' });
+});
 /// 1. ----------  Case routes  ---------- ///
 router.get('/case/create', case_controller.case_create_get);
 router.post('/case/create', case_controller.case_create_post);
